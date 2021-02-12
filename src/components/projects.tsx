@@ -13,12 +13,6 @@ const styles = {
     'flex-direction': 'column',
     'justify-content': 'center',
     'background-color': '#000000',
-    animationName: '$expand',
-  },
-
-  '@keyframes expand': {
-    from: { left: '200px', top: '0px' },
-    to: { left: '200px', top: '200px' },
   },
 };
 

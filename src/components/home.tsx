@@ -19,6 +19,10 @@ const styles = {
     'flex-direction': 'column',
     'justify-content': 'center',
     'background-color': '#000000',
+    animationName: '$expand',
+    'animation-duration': '4s',
+    'animation-timing-function': 'ease-out',
+    transition: 'transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946)',
   },
   button: {
     color: '#ffffff !important',
@@ -27,8 +31,11 @@ const styles = {
     'background-color': 'transparent',
     border: 'none',
     outline: 'none',
-    // 'transition-property': 'height',
-    // 'transition-duration': '3s',
+  },
+
+  '@keyframes expand': {
+    from: { top: '0px' },
+    to: { top: '500px' },
   },
 };
 

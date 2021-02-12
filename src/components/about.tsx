@@ -13,13 +13,15 @@ const styles = {
     'flex-direction': 'column',
     'justify-content': 'center',
     'background-color': '#000000',
-    animationName: '$expand',
+    // animationName: '$expand',
+    // 'animation-duration': '4s',
+    // 'animation-timing-function': 'ease-out',
   },
 
-  '@keyframes expand': {
-    from: { left: '200px', top: '0px' },
-    to: { left: '200px', top: '200px' },
-  },
+  //   '@keyframes expand': {
+  //     from: { top: '0px' },
+  //     to: { top: '500px' },
+  //   },
 };
 
 interface IProps extends WithStylesProps<typeof styles> {
