@@ -5,6 +5,7 @@ import DownArrow from './icons/down-arrow';
 import About from './about';
 import Projects from './projects';
 import Contact from './contact';
+import Button from './button';
 
 const styles = {
   Home: {
@@ -24,15 +25,6 @@ const styles = {
     'animation-timing-function': 'ease-out',
     transition: 'transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946)',
   },
-  button: {
-    color: '#ffffff !important',
-    height: '100px',
-    width: '100px',
-    'background-color': 'transparent',
-    border: 'none',
-    outline: 'none',
-  },
-
   // '@keyframes animatedFadeOutClass': {
   //   'transition': '0.5s',
   //   'opacity': '0',
@@ -58,13 +50,11 @@ const Home: React.FunctionComponent<IProps> = ({ classes }) => {
         <div className={classes.Home}>
           <h1>Hi!</h1>
           <h2>My name is Jemimah :) </h2>
-          <button
-            type='button'
-            className={classes.button}
+          <Button
             onClick={() => setContentVisibility(!contentVisibility)}
           >
             <DownArrow />
-          </button>
+          </Button>
         </div>
         <About />
         <Projects />
@@ -76,13 +66,11 @@ const Home: React.FunctionComponent<IProps> = ({ classes }) => {
       <div className={classes.Home}>
         <h1>Hi!</h1>
         <h2>My name is Jemimah :) </h2>
-        <button
-          type='button'
-          className={classes.button}
+        <Button
           onClick={() => setContentVisibility(!contentVisibility)}
         >
           <DownArrow />
-        </button>
+        </Button>
       </div>
     );
   }
