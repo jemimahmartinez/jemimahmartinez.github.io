@@ -3,6 +3,8 @@ import withStyles, { WithStylesProps } from 'react-jss';
 
 import DownArrow from './icons/down-arrow';
 import About from './about';
+import Projects from './projects';
+import Contact from './contact';
 
 const styles = {
   Home: {
@@ -51,6 +53,8 @@ const Home: React.FunctionComponent<IProps> = ({ classes }) => {
           </button>
         </div>
         <About />
+        <Projects />
+        <Contact />
       </>
     );
   } else {
