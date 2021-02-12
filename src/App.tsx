@@ -26,10 +26,10 @@ interface IProps extends WithStylesProps<typeof styles> {
 const App: React.FunctionComponent<IProps> = ({ classes }) => {
   return (
     <div className={classes.App}>
-      {/* <section id='home'> */}
+      {/* <section id='home' ref="about"> */}
       <Home />
-      {/* </section> */}
-      {/* <section id='about'>
+      {/* </section>
+       <section id='about'>
         <About />
       </section> */}
     </div>

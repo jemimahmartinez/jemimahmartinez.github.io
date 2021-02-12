@@ -18,10 +18,10 @@ const styles = {
     // 'animation-timing-function': 'ease-out',
   },
 
-  //   '@keyframes expand': {
-  //     from: { top: '0px' },
-  //     to: { top: '500px' },
-  //   },
+    // '@keyframes expand': {
+    //   from: { top: '0px' },
+    //   to: { top: '500px' },
+    // },
 };
 
 interface IProps extends WithStylesProps<typeof styles> {

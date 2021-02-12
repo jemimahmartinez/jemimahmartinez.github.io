@@ -33,6 +33,13 @@ const styles = {
     outline: 'none',
   },
 
+  // '@keyframes animatedFadeOutClass': {
+  //   'transition': '0.5s',
+  //   'opacity': '0',
+  //   'height': '0',
+  //   'overflow': 'hidden',
+  // },
+
   '@keyframes expand': {
     from: { top: '0px' },
     to: { top: '500px' },

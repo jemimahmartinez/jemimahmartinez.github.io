@@ -1,27 +1,33 @@
-import * as React from 'react';
-import withStyles, { WithStylesProps } from 'react-jss';
-
-import DownArrow from './icons/down-arrow';
+import withStyles, { WithStylesProps } from "react-jss";
 
 const styles = {
   button: {
-    backgroundColor: 'yellow',
-  },
-  label: {
-    fontWeight: 'bold',
+    color: "#ffffff !important",
+    height: "100px !important",
+    width: "100px !important",
+    "background-color": "transparent",
+    border: "none",
+    outline: "none",
+    margin: "0px 15px 0px 15px",
   },
 };
 
 interface IProps extends WithStylesProps<typeof styles> {
   children: React.ReactNode;
   classes: any;
+  onClick: () => void;
 }
 
-const Button: React.FunctionComponent<IProps> = ({ classes, children }) => (
-  <button className={classes.button}>
-    <DownArrow />
-    <span className={classes.label}>{children}</span>
-  </button>
-);
+const Button: React.FunctionComponent<IProps> = ({ classes, children, onClick }) => {
+  return (
+    <button
+      type="button"
+      className={classes.button}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+};
 
 export default withStyles(styles)(Button);
