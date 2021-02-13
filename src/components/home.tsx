@@ -1,30 +1,32 @@
-import React, { useState } from 'react';
-import withStyles, { WithStylesProps } from 'react-jss';
+import React, { useState } from "react";
+import withStyles, { WithStylesProps } from "react-jss";
 
-import DownArrow from './icons/down-arrow';
-import About from './about';
-import Projects from './projects';
-import Contact from './contact';
-import Button from './button';
+import DownArrow from "./icons/down-arrow";
+import About from "./about";
+import Projects from "./projects";
+import Contact from "./contact";
+import Button from "./button";
+import Background from './pics/dance.png';
 
 const styles = {
   Home: {
-    color: 'white',
-    display: 'flex',
-    'font-size': 'calc(10px + 2vmin)',
-    // 'font-family': 'Montserrat, sans-serif',
-    'text-align': 'center',
-    'min-height': '100vh',
-    'min-width': '100vw',
-    overflow: 'hidden',
-    'align-items': 'center',
-    'flex-direction': 'column',
-    'justify-content': 'center',
-    'background-color': '#000000',
-    animationName: '$expand',
-    'animation-duration': '4s',
-    'animation-timing-function': 'ease-out',
-    transition: 'transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946)',
+    color: "white",
+    display: "flex",
+    "text-align": "center",
+    "min-height": "100vh",
+    "min-width": "100vw",
+    overflow: "hidden",
+    "align-items": "center",
+    "flex-direction": "column",
+    "justify-content": "center",
+    // 'background-color': '#000000',
+    // background: ["url(./pics/revue/png)", "no-repeat", "top"],
+    backgroundImage: `url(${Background})`,
+   'background-size': 'cover',
+    // animationName: '$expand',
+    // 'animation-duration': '4s',
+    // 'animation-timing-function': 'ease-out',
+    // transition: 'transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946)',
   },
   // '@keyframes animatedFadeOutClass': {
   //   'transition': '0.5s',
@@ -32,11 +34,10 @@ const styles = {
   //   'height': '0',
   //   'overflow': 'hidden',
   // },
-
-  '@keyframes expand': {
-    from: { top: '0px' },
-    to: { top: '500px' },
-  },
+  // "@keyframes expand": {
+  //   from: { top: "0px" },
+  //   to: { top: "500px" },
+  // },
 };
 
 interface IProps extends WithStylesProps<typeof styles> {
@@ -49,11 +50,9 @@ const Home: React.FunctionComponent<IProps> = ({ classes }) => {
     return (
       <>
         <div className={classes.Home}>
-          <h1>Hi!</h1>
-          <h2>My name is Jemimah :) </h2>
-          <Button
-            onClick={() => setContentVisibility(!contentVisibility)}
-          >
+          <p>Hi! My name is</p>
+          <h2>Jemimah Martinez</h2>
+          <Button onClick={() => setContentVisibility(!contentVisibility)}>
             <DownArrow />
           </Button>
         </div>
@@ -65,11 +64,9 @@ const Home: React.FunctionComponent<IProps> = ({ classes }) => {
   } else {
     return (
       <div className={classes.Home}>
-        <h1>Hi!</h1>
-        <h2>My name is Jemimah :) </h2>
-        <Button
-          onClick={() => setContentVisibility(!contentVisibility)}
-        >
+        <p>Hi! My name is</p>
+        <h2>Jemimah Martinez</h2>
+        <Button onClick={() => setContentVisibility(!contentVisibility)}>
           <DownArrow />
         </Button>
       </div>

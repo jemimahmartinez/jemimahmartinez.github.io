@@ -8,13 +8,15 @@ const styles = {
     'background-color': 'transparent',
     border: 'none',
     outline: 'none',
-    margin: '0px 15px 0px 15px',
-    transition:'width 1s, height 1s',
+    margin: '0px 20px 0px 20px',
+    transition:'width .1s, height .1s',
     transitionTimingFunction: 'ease',
     '&:hover': {
       width: '120px !important',
       height: '120px !important',
-    }
+    },
+    'align-items': 'flex-end',
+    position: 'sticky'
   },
 };
 

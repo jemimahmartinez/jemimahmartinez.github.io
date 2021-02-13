@@ -7,7 +7,7 @@ import Home from './components/home';
 
 const styles = {
   App: {
-    'background-color': '#000000',
+    // 'background-color': '#000000',
     'min-height': '100vh',
     display: 'flex',
     'flex-direction': 'column',

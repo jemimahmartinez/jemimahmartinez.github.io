@@ -1,6 +1,6 @@
 import withStyles, { WithStylesProps } from "react-jss";
 
-import Image from "./me.png";
+import Image from "./pics/me.png";
 import User from "./icons/user";
 import PinPoint from "./icons/pin-point";
 import RowFlexContainer from "./layout/row-flex";
@@ -22,7 +22,17 @@ const styles = {
     // animationName: '$expand',
     // 'animation-duration': '4s',
     // 'animation-timing-function': 'ease-out',
+    
+    // animationName: '$slideUp',
+    // animationDuration: '1s',
+    // animationTimingFunction: 'linear',
+    // animationIterationCount:'infinite',
   },
+
+// '@keyframes slideUp': {
+//   from: {opacity: 0},
+//   to: {opacity: 1}
+// },
 
   // '@keyframes expand': {
   //   from: { top: '0px' },

@@ -6,6 +6,7 @@ const styles = {
     'flex-direction': 'row',
     'align-items': 'center',
     margin: '0px 15px 0px 15px',
+    width: '100%',
   },
   containerCenter: {
     display: 'flex',
@@ -13,6 +14,7 @@ const styles = {
     'align-items': 'center',
     margin: '0px 15px 0px 15px',
     'justify-content': 'center',
+    width: '100%',
   }
 };
 
