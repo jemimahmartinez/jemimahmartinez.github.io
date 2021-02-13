@@ -12,6 +12,7 @@ const styles = {
     color: 'white',
     display: 'flex',
     'font-size': 'calc(10px + 2vmin)',
+    // 'font-family': 'Montserrat, sans-serif',
     'text-align': 'center',
     'min-height': '100vh',
     'min-width': '100vw',

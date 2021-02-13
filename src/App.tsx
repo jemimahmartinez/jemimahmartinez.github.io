@@ -14,6 +14,7 @@ const styles = {
     'align-items': 'center',
     'justify-content': 'center',
     'font-size': 'calc(10px + 2vmin)',
+    'font-family': 'Montserrat, sans-serif',
     color: 'white',
     'overflow-x': 'hidden',
     'scroll-behaviour': 'smooth',
