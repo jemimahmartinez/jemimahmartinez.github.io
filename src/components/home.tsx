@@ -38,6 +38,12 @@ const styles = {
   //   from: { top: "0px" },
   //   to: { top: "500px" },
   // },
+  downButton: {
+    position: 'absolute',
+    bottom: '-80%',
+    width: '100%',
+    height: '100%',
+  },
 };
 
 interface IProps extends WithStylesProps<typeof styles> {
@@ -52,9 +58,11 @@ const Home: React.FunctionComponent<IProps> = ({ classes }) => {
         <div className={classes.Home}>
           <p>Hi! My name is</p>
           <h2>Jemimah Martinez</h2>
+          <div className={classes.downButton}>
           <Button onClick={() => setContentVisibility(!contentVisibility)}>
             <DownArrow />
           </Button>
+        </div>
         </div>
         <About />
         <Projects />
@@ -66,9 +74,11 @@ const Home: React.FunctionComponent<IProps> = ({ classes }) => {
       <div className={classes.Home}>
         <p>Hi! My name is</p>
         <h2>Jemimah Martinez</h2>
-        <Button onClick={() => setContentVisibility(!contentVisibility)}>
-          <DownArrow />
-        </Button>
+        <div className={classes.downButton}>
+          <Button onClick={() => setContentVisibility(!contentVisibility)}>
+            <DownArrow />
+          </Button>
+        </div>
       </div>
     );
   }

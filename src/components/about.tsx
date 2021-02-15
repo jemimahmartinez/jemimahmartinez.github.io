@@ -22,11 +22,16 @@ const styles = {
     // animationName: '$expand',
     // 'animation-duration': '4s',
     // 'animation-timing-function': 'ease-out',
-    
+
     // animationName: '$slideUp',
     // animationDuration: '1s',
     // animationTimingFunction: 'linear',
     // animationIterationCount:'infinite',
+  },
+  text: {
+    'text-align': 'start',
+    width: '100%',
+    height: '100%'
   },
 
 // '@keyframes slideUp': {
@@ -68,7 +73,7 @@ const About: React.FunctionComponent<IProps> = ({ classes }) => {
         <ColumnFlexContainer>
           <RowFlexContainer center={false}>
             <User className={classes.icon} />
-            <p>
+            <p className={classes.text}>
               Final year Computer Systems Engineering student at the University
               of Auckland
             </p>

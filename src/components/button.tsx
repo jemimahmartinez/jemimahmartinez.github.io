@@ -3,8 +3,8 @@ import withStyles, { WithStylesProps } from "react-jss";
 const styles = {
   button: {
     color: '#ffffff !important',
-    height: '100px !important',
-    width: '100px !important',
+    height: '75px !important',
+    width: '75px !important',
     'background-color': 'transparent',
     border: 'none',
     outline: 'none',
@@ -12,11 +12,12 @@ const styles = {
     transition:'width .1s, height .1s',
     transitionTimingFunction: 'ease',
     '&:hover': {
-      width: '120px !important',
-      height: '120px !important',
+      width: '100px !important',
+      height: '100px !important',
+      color: '#C3073F !important'
     },
     'align-items': 'flex-end',
-    position: 'sticky'
+    // position: 'absolute',
   },
 };
 
