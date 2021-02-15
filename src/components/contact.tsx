@@ -5,7 +5,7 @@ import GitHub from './icons/github';
 import LinkedIn from './icons/linkedin';
 import Email from './icons/email';
 import RowFlexContainer from './layout/row-flex';
-import UpArrow from './icons/up-arrow';
+import NavButton from './nav-button';
 
 const styles = {
   Contact: {
@@ -22,12 +22,6 @@ const styles = {
     'background-color': '#000000',
     position: 'relative',
   },
-  upButton: {
-    position: 'absolute',
-    top: '5%',
-    width: '100%',
-    height: '100%',
-  }
 };
 
 interface IProps extends WithStylesProps<typeof styles> {
@@ -37,13 +31,7 @@ interface IProps extends WithStylesProps<typeof styles> {
 const Contact: React.FunctionComponent<IProps> = ({ classes }) => {
   return (
     <div id='contact' className={classes.Contact}>
-      <div className={classes.upButton}>
-        <Button>
-          <a href="#projects">
-            <UpArrow />
-          </a>
-        </Button>
-      </div>
+      <NavButton type='up' section='#projects' />
       <h1>Contact me here!</h1>
         <RowFlexContainer center={true}>
           <Button

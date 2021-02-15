@@ -5,9 +5,7 @@ import User from "./icons/user";
 import PinPoint from "./icons/pin-point";
 import RowFlexContainer from "./layout/row-flex";
 import ColumnFlexContainer from "./layout/column-flex";
-import Button from './button';
-import DownArrow from './icons/down-arrow';
-import UpArrow from './icons/up-arrow';
+import NavButton from './nav-button';
 
 const styles = {
   About: {
@@ -44,18 +42,6 @@ const styles = {
     outline: "none",
     margin: "0px 15px 0px 15px",
   },
-  downButton: {
-    position: 'absolute',
-    bottom: '-85%',
-    width: '100%',
-    height: '100%',
-  },
-  upButton: {
-    position: 'absolute',
-    top: '5%',
-    width: '100%',
-    height: '100%',
-  }
 };
 
 interface IProps extends WithStylesProps<typeof styles> {
@@ -65,13 +51,7 @@ interface IProps extends WithStylesProps<typeof styles> {
 const About: React.ComponentType<IProps> = ({ classes }) => {
   return (
     <div id="about" className={classes.About}>
-      <div className={classes.upButton}>
-        <Button>
-          <a href="#home">
-            <UpArrow />
-          </a>
-        </Button>
-      </div>
+      <NavButton type='up' section='#home' />
       <h1>About Me</h1>
       <RowFlexContainer center={true}>
         <img src={Image} alt='' className={classes.image} />
@@ -85,17 +65,11 @@ const About: React.ComponentType<IProps> = ({ classes }) => {
           </RowFlexContainer>
           <RowFlexContainer center={false}>
             <PinPoint className={classes.icon} />
-            <p>Auckland, New Zealand</p>
+            <p className={classes.text}>Auckland, New Zealand</p>
           </RowFlexContainer>
         </ColumnFlexContainer>
       </RowFlexContainer>
-      <div className={classes.downButton}>
-        <Button>
-          <a href="#projects">
-            <DownArrow />
-          </a>
-        </Button>
-      </div>
+      <NavButton type='down' section='#projects' />
     </div>
   );
 };

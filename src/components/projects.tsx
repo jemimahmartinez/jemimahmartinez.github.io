@@ -1,8 +1,6 @@
 import withStyles, { WithStylesProps } from 'react-jss';
 
-import Button from './button';
-import DownArrow from './icons/down-arrow';
-import UpArrow from './icons/up-arrow';
+import NavButton from './nav-button';
 
 const styles = {
   Projects: {
@@ -19,18 +17,6 @@ const styles = {
     'background-color': '#000000',
     position: 'relative',
   },
-  downButton: {
-    position: 'absolute',
-    bottom: '-85%',
-    width: '100%',
-    height: '100%',
-  },
-  upButton: {
-    position: 'absolute',
-    top: '5%',
-    width: '100%',
-    height: '100%',
-  }
 };
 
 interface IProps extends WithStylesProps<typeof styles> {
@@ -40,22 +26,10 @@ interface IProps extends WithStylesProps<typeof styles> {
 const Projects: React.FunctionComponent<IProps> = ({ classes }) => {
   return (
     <div id="projects" className={classes.Projects}>
-      <div className={classes.upButton}>
-        <Button>
-          <a href="#about">
-            <UpArrow />
-          </a>
-        </Button>
-      </div>
+      <NavButton type='up' section='#about' />
       <h1>My Projects</h1>
       <p>blah blah blah</p>
-      <div className={classes.downButton}>
-        <Button>
-          <a href="#contact">
-            <DownArrow />
-          </a>
-        </Button>
-      </div>
+      <NavButton type='down' section='#contact' />
     </div>
   );
 };

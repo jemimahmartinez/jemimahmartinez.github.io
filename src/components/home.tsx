@@ -1,9 +1,8 @@
 import React from "react";
 import withStyles, { WithStylesProps } from "react-jss";
 
-import DownArrow from "./icons/down-arrow";
-import Button from "./button";
 import Background from './pics/dance.png';
+import NavButton from './nav-button';
 
 const styles = {
   Home: {
@@ -20,12 +19,6 @@ const styles = {
    'background-size': 'cover',
    position: 'relative'
   },
-  downButton: {
-    position: 'absolute',
-    bottom: '-85%',
-    width: '100%',
-    height: '100%',
-  },
 };
 
 interface IProps extends WithStylesProps<typeof styles> {
@@ -38,13 +31,7 @@ const Home: React.FunctionComponent<IProps> = ({ classes }) => {
         <div id="home" className={classes.Home}>
           <h4>Hi! My name is</h4>
           <h1>Jemimah Martinez</h1>
-          <div className={classes.downButton}>
-          <Button>
-            <a href="#about">
-              <DownArrow />
-            </a>
-          </Button>
-        </div>
+          <NavButton type='down' section='#about' />
         </div>
 
       </>
