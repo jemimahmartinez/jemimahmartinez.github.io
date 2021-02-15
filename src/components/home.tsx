@@ -23,6 +23,7 @@ const styles = {
     // background: ["url(./pics/revue/png)", "no-repeat", "top"],
     backgroundImage: `url(${Background})`,
    'background-size': 'cover',
+   position: 'relative'
     // animationName: '$expand',
     // 'animation-duration': '4s',
     // 'animation-timing-function': 'ease-out',
@@ -40,7 +41,7 @@ const styles = {
   // },
   downButton: {
     position: 'absolute',
-    bottom: '-80%',
+    bottom: '-85%',
     width: '100%',
     height: '100%',
   },
