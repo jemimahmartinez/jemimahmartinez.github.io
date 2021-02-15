@@ -1,10 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import withStyles, { WithStylesProps } from "react-jss";
 
 import DownArrow from "./icons/down-arrow";
-import About from "./about";
-import Projects from "./projects";
-import Contact from "./contact";
 import Button from "./button";
 import Background from './pics/dance.png';
 
@@ -15,30 +12,14 @@ const styles = {
     "text-align": "center",
     "min-height": "100vh",
     "min-width": "100vw",
-    overflow: "hidden",
+    'overflow': "hidden",
     "align-items": "center",
     "flex-direction": "column",
     "justify-content": "center",
-    // 'background-color': '#000000',
-    // background: ["url(./pics/revue/png)", "no-repeat", "top"],
     backgroundImage: `url(${Background})`,
    'background-size': 'cover',
    position: 'relative'
-    // animationName: '$expand',
-    // 'animation-duration': '4s',
-    // 'animation-timing-function': 'ease-out',
-    // transition: 'transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946)',
   },
-  // '@keyframes animatedFadeOutClass': {
-  //   'transition': '0.5s',
-  //   'opacity': '0',
-  //   'height': '0',
-  //   'overflow': 'hidden',
-  // },
-  // "@keyframes expand": {
-  //   from: { top: "0px" },
-  //   to: { top: "500px" },
-  // },
   downButton: {
     position: 'absolute',
     bottom: '-85%',
@@ -52,37 +33,22 @@ interface IProps extends WithStylesProps<typeof styles> {
 }
 
 const Home: React.FunctionComponent<IProps> = ({ classes }) => {
-  const [contentVisibility, setContentVisibility] = useState(false);
-  if (contentVisibility) {
     return (
       <>
-        <div className={classes.Home}>
-          <p>Hi! My name is</p>
-          <h2>Jemimah Martinez</h2>
+        <div id="home" className={classes.Home}>
+          <h4>Hi! My name is</h4>
+          <h1>Jemimah Martinez</h1>
           <div className={classes.downButton}>
-          <Button onClick={() => setContentVisibility(!contentVisibility)}>
-            <DownArrow />
+          <Button>
+            <a href="#about">
+              <DownArrow />
+            </a>
           </Button>
         </div>
         </div>
-        <About />
-        <Projects />
-        <Contact />
+
       </>
     );
-  } else {
-    return (
-      <div className={classes.Home}>
-        <p>Hi! My name is</p>
-        <h2>Jemimah Martinez</h2>
-        <div className={classes.downButton}>
-          <Button onClick={() => setContentVisibility(!contentVisibility)}>
-            <DownArrow />
-          </Button>
-        </div>
-      </div>
-    );
-  }
 };
 
 export default withStyles(styles)(Home);

@@ -5,6 +5,7 @@ import GitHub from './icons/github';
 import LinkedIn from './icons/linkedin';
 import Email from './icons/email';
 import RowFlexContainer from './layout/row-flex';
+import UpArrow from './icons/up-arrow';
 
 const styles = {
   Contact: {
@@ -19,7 +20,14 @@ const styles = {
     'flex-direction': 'column',
     'justify-content': 'center',
     'background-color': '#000000',
+    position: 'relative',
   },
+  upButton: {
+    position: 'absolute',
+    top: '5%',
+    width: '100%',
+    height: '100%',
+  }
 };
 
 interface IProps extends WithStylesProps<typeof styles> {
@@ -28,7 +36,14 @@ interface IProps extends WithStylesProps<typeof styles> {
 
 const Contact: React.FunctionComponent<IProps> = ({ classes }) => {
   return (
-    <div className={classes.Contact}>
+    <div id='contact' className={classes.Contact}>
+      <div className={classes.upButton}>
+        <Button>
+          <a href="#projects">
+            <UpArrow />
+          </a>
+        </Button>
+      </div>
       <h1>Contact me here!</h1>
         <RowFlexContainer center={true}>
           <Button

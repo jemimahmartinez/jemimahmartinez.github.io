@@ -24,7 +24,7 @@ const styles = {
 interface IProps extends WithStylesProps<typeof styles> {
   children: React.ReactNode;
   classes: any;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const Button: React.FunctionComponent<IProps> = ({ classes, children, onClick }) => {

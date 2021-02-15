@@ -5,6 +5,9 @@ import User from "./icons/user";
 import PinPoint from "./icons/pin-point";
 import RowFlexContainer from "./layout/row-flex";
 import ColumnFlexContainer from "./layout/column-flex";
+import Button from './button';
+import DownArrow from './icons/down-arrow';
+import UpArrow from './icons/up-arrow';
 
 const styles = {
   About: {
@@ -19,30 +22,13 @@ const styles = {
     "flex-direction": "column",
     "justify-content": "center",
     "background-color": "#000000",
-    // animationName: '$expand',
-    // 'animation-duration': '4s',
-    // 'animation-timing-function': 'ease-out',
-
-    // animationName: '$slideUp',
-    // animationDuration: '1s',
-    // animationTimingFunction: 'linear',
-    // animationIterationCount:'infinite',
+    position: 'relative',
   },
   text: {
     'text-align': 'start',
     width: '100%',
     height: '100%'
   },
-
-// '@keyframes slideUp': {
-//   from: {opacity: 0},
-//   to: {opacity: 1}
-// },
-
-  // '@keyframes expand': {
-  //   from: { top: '0px' },
-  //   to: { top: '500px' },
-  // },
   image: {
     height: "20%", // 300px
     width: "20%",
@@ -58,15 +44,34 @@ const styles = {
     outline: "none",
     margin: "0px 15px 0px 15px",
   },
+  downButton: {
+    position: 'absolute',
+    bottom: '-85%',
+    width: '100%',
+    height: '100%',
+  },
+  upButton: {
+    position: 'absolute',
+    top: '5%',
+    width: '100%',
+    height: '100%',
+  }
 };
 
 interface IProps extends WithStylesProps<typeof styles> {
   classes: any;
 }
 
-const About: React.FunctionComponent<IProps> = ({ classes }) => {
+const About: React.ComponentType<IProps> = ({ classes }) => {
   return (
-    <div className={classes.About}>
+    <div id="about" className={classes.About}>
+      <div className={classes.upButton}>
+        <Button>
+          <a href="#home">
+            <UpArrow />
+          </a>
+        </Button>
+      </div>
       <h1>About Me</h1>
       <RowFlexContainer center={true}>
         <img src={Image} alt='' className={classes.image} />
@@ -84,6 +89,13 @@ const About: React.FunctionComponent<IProps> = ({ classes }) => {
           </RowFlexContainer>
         </ColumnFlexContainer>
       </RowFlexContainer>
+      <div className={classes.downButton}>
+        <Button>
+          <a href="#projects">
+            <DownArrow />
+          </a>
+        </Button>
+      </div>
     </div>
   );
 };

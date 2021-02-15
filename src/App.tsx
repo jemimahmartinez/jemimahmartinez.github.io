@@ -3,7 +3,9 @@ import './App.css';
 import withStyles, { WithStylesProps } from 'react-jss';
 
 import Home from './components/home';
-// import About from './components/about';
+import About from './components/about';
+import Projects from './components/projects';
+import Contact from './components/contact';
 
 const styles = {
   App: {
@@ -24,16 +26,14 @@ const styles = {
 interface IProps extends WithStylesProps<typeof styles> {
   classes: any;
 }
-const App: React.FunctionComponent<IProps> = ({ classes }) => {
+const App: React.ComponentType<IProps> = ({ classes }) => {
   return (
-    <div className={classes.App}>
-      {/* <section id='home' ref="about"> */}
-      <Home />
-      {/* </section>
-       <section id='about'>
+      <div className={classes.App}>
+        <Home />
         <About />
-      </section> */}
-    </div>
+        <Projects />
+        <Contact />
+      </div>
   );
 };
 
