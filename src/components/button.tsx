@@ -17,6 +17,7 @@ const styles = {
       color: '#C3073F !important'
     },
     'align-items': 'flex-end',
+    'z-index': '99'
     // position: 'absolute',
   },
 };
@@ -24,7 +25,7 @@ const styles = {
 interface IProps extends WithStylesProps<typeof styles> {
   children: React.ReactNode;
   classes: any;
-  onClick?: () => void;
+  onClick: () => void;
 }
 
 const Button: React.FunctionComponent<IProps> = ({ classes, children, onClick }) => {

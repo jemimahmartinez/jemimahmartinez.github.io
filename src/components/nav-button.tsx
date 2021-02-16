@@ -36,8 +36,8 @@ const NavButton: React.FunctionComponent<IProps> = ({
   if (type === "up") {
     return (
       <div className={classes.upButton}>
-        <Button>
-          <a href={section}>
+        <Button onClick={() => console.log('Up')}>
+          <a href={section} style={{  textDecoration: 'none'}}>
             <UpArrow />
           </a>
         </Button>
@@ -46,8 +46,8 @@ const NavButton: React.FunctionComponent<IProps> = ({
   }
   return (
     <div className={classes.downButton}>
-      <Button>
-        <a href={section}>
+      <Button onClick={() => console.log('Down')}>
+        <a href={section} style={{  textDecoration: 'none'}}>
           <DownArrow />
         </a>
       </Button>
