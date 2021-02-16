@@ -6,11 +6,12 @@ import Home from './components/home';
 import About from './components/about';
 import Projects from './components/projects';
 import Contact from './components/contact';
+import NavBar from './components/navbar';
 
 const styles = {
   App: {
-    // 'background-color': '#000000',
     'min-height': '100vh',
+    width: '100%',
     display: 'flex',
     'flex-direction': 'column',
     'align-items': 'center',
@@ -18,7 +19,6 @@ const styles = {
     'font-size': 'calc(10px + 2vmin)',
     'font-family': 'Montserrat, sans-serif',
     color: 'white',
-    'overflow-x': 'hidden',
   },
 };
 
@@ -29,6 +29,7 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
   return (
       <div className={classes.App}>
         <Home />
+        <NavBar />
         <About />
         <Projects />
         <Contact />

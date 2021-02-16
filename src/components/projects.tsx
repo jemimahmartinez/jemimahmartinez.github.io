@@ -1,7 +1,5 @@
 import withStyles, { WithStylesProps } from 'react-jss';
 
-import NavButton from './nav-button';
-
 const styles = {
   Projects: {
     color: 'white',
@@ -26,10 +24,8 @@ interface IProps extends WithStylesProps<typeof styles> {
 const Projects: React.FunctionComponent<IProps> = ({ classes }) => {
   return (
     <div id="projects" className={classes.Projects}>
-      <NavButton type='up' section='#about' />
       <h1>My Projects</h1>
       <p>blah blah blah</p>
-      <NavButton type='down' section='#contact' />
     </div>
   );
 };

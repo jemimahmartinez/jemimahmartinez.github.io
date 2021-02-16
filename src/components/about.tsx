@@ -5,7 +5,6 @@ import User from "./icons/user";
 import PinPoint from "./icons/pin-point";
 import RowFlexContainer from "./layout/row-flex";
 import ColumnFlexContainer from "./layout/column-flex";
-import NavButton from './nav-button';
 
 const styles = {
   About: {
@@ -15,7 +14,6 @@ const styles = {
     "text-align": "center",
     "min-height": "100vh",
     "min-width": "100vw",
-    overflow: "hidden",
     "align-items": "center",
     "flex-direction": "column",
     "justify-content": "center",
@@ -28,7 +26,7 @@ const styles = {
     height: '100%'
   },
   image: {
-    height: "20%", // 300px
+    height: "20%", 
     width: "20%",
     margin: '0px 15px 0px 15px',
     "border-radius": "50px",
@@ -51,7 +49,6 @@ interface IProps extends WithStylesProps<typeof styles> {
 const About: React.ComponentType<IProps> = ({ classes }) => {
   return (
     <div id="about" className={classes.About}>
-      <NavButton type='up' section='#home' />
       <h1>About Me</h1>
       <RowFlexContainer center={true}>
         <img src={Image} alt='' className={classes.image} />
@@ -69,7 +66,6 @@ const About: React.ComponentType<IProps> = ({ classes }) => {
           </RowFlexContainer>
         </ColumnFlexContainer>
       </RowFlexContainer>
-      <NavButton type='down' section='#projects' />
     </div>
   );
 };

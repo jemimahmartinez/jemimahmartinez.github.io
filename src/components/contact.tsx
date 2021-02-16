@@ -5,7 +5,6 @@ import GitHub from './icons/github';
 import LinkedIn from './icons/linkedin';
 import Email from './icons/email';
 import RowFlexContainer from './layout/row-flex';
-import NavButton from './nav-button';
 
 const styles = {
   Contact: {
@@ -31,7 +30,6 @@ interface IProps extends WithStylesProps<typeof styles> {
 const Contact: React.FunctionComponent<IProps> = ({ classes }) => {
   return (
     <div id='contact' className={classes.Contact}>
-      <NavButton type='up' section='#projects' />
       <h1>Contact me here!</h1>
         <RowFlexContainer center={true}>
           <Button
