@@ -17,7 +17,7 @@ const styles = {
     "justify-content": "center",
     backgroundImage: `url(${Background})`,
    'background-size': 'cover',
-   position: 'relative'
+   position: 'relative',
   },
 };
 

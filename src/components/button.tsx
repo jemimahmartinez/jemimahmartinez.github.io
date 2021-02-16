@@ -18,7 +18,6 @@ const styles = {
     },
     'align-items': 'flex-end',
     'z-index': '99'
-    // position: 'absolute',
   },
 };
 

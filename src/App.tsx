@@ -19,7 +19,6 @@ const styles = {
     'font-family': 'Montserrat, sans-serif',
     color: 'white',
     'overflow-x': 'hidden',
-    'scroll-behaviour': 'smooth',
   },
 };
 
