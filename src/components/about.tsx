@@ -5,6 +5,7 @@ import User from "./icons/user";
 import PinPoint from "./icons/pin-point";
 import RowFlexContainer from "./layout/row-flex";
 import ColumnFlexContainer from "./layout/column-flex";
+import NavArrow from './navigated-arrow';
 
 const styles = {
   About: {
@@ -48,25 +49,28 @@ interface IProps extends WithStylesProps<typeof styles> {
 
 const About: React.ComponentType<IProps> = ({ classes }) => {
   return (
-    <div id="about" className={classes.About}>
-      <h1>About Me</h1>
-      <RowFlexContainer center={true}>
-        <img src={Image} alt='' className={classes.image} />
-        <ColumnFlexContainer>
-          <RowFlexContainer center={false}>
-            <User className={classes.icon} />
-            <p className={classes.text}>
-              Final year Computer Systems Engineering student at the University
-              of Auckland
-            </p>
-          </RowFlexContainer>
-          <RowFlexContainer center={false}>
-            <PinPoint className={classes.icon} />
-            <p className={classes.text}>Auckland, New Zealand</p>
-          </RowFlexContainer>
-        </ColumnFlexContainer>
-      </RowFlexContainer>
-    </div>
+    <>
+      <NavArrow section='#about'/>
+      <div id="about" className={classes.About}>
+        <h1>About Me</h1>
+        <RowFlexContainer center={true}>
+          <img src={Image} alt='' className={classes.image} />
+          <ColumnFlexContainer>
+            <RowFlexContainer center={false}>
+              <User className={classes.icon} />
+              <p className={classes.text}>
+                Final year Computer Systems Engineering student at the University
+                of Auckland
+              </p>
+            </RowFlexContainer>
+            <RowFlexContainer center={false}>
+              <PinPoint className={classes.icon} />
+              <p className={classes.text}>Auckland, New Zealand</p>
+            </RowFlexContainer>
+          </ColumnFlexContainer>
+        </RowFlexContainer>
+      </div>
+    </>
   );
 };
 

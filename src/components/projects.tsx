@@ -1,5 +1,7 @@
 import withStyles, { WithStylesProps } from 'react-jss';
 
+import NavArrow from './navigated-arrow';
+
 const styles = {
   Projects: {
     color: 'white',
@@ -8,7 +10,6 @@ const styles = {
     'text-align': 'center',
     'min-height': '100vh',
     'min-width': '100vw',
-    overflow: 'hidden',
     'align-items': 'center',
     'flex-direction': 'column',
     'justify-content': 'center',
@@ -23,10 +24,13 @@ interface IProps extends WithStylesProps<typeof styles> {
 
 const Projects: React.FunctionComponent<IProps> = ({ classes }) => {
   return (
-    <div id="projects" className={classes.Projects}>
-      <h1>My Projects</h1>
-      <p>blah blah blah</p>
-    </div>
+    <>
+      <NavArrow section='#projects' />
+      <div id='projects' className={classes.Projects}>
+        <h1>My Projects</h1>
+        <p>blah blah blah</p>
+      </div>
+    </>
   );
 };
 

@@ -19,6 +19,7 @@ const styles = {
     'font-size': 'calc(10px + 2vmin)',
     'font-family': 'Montserrat, sans-serif',
     color: 'white',
+    'background-color': '#000000'
   },
 };
 

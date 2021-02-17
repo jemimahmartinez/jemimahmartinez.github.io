@@ -5,6 +5,7 @@ import GitHub from './icons/github';
 import LinkedIn from './icons/linkedin';
 import Email from './icons/email';
 import RowFlexContainer from './layout/row-flex';
+import NavArrow from './navigated-arrow';
 
 const styles = {
   Contact: {
@@ -29,26 +30,29 @@ interface IProps extends WithStylesProps<typeof styles> {
 
 const Contact: React.FunctionComponent<IProps> = ({ classes }) => {
   return (
-    <div id='contact' className={classes.Contact}>
-      <h1>Contact me here!</h1>
-        <RowFlexContainer center={true}>
-          <Button
-            onClick={() => window.open('https://github.com/jemimahmartinez')}
-          >
-            <GitHub />
-          </Button>
-          <Button
-            onClick={() => window.open('https://www.linkedin.com/in/jemimah-martinez-a0924a18b/')}
-          >
-            <LinkedIn />
-          </Button>
-          <Button
-            onClick={() => window.open('mailto:martinezjemimah@gmail.com')}
-          >
-            <Email />
-          </Button>
-        </RowFlexContainer>
-    </div>
+    <>
+      <NavArrow section='#contact'/>
+      <div id='contact' className={classes.Contact}>
+        <h1>Contact me here!</h1>
+          <RowFlexContainer center={true}>
+            <Button
+              onClick={() => window.open('https://github.com/jemimahmartinez')}
+            >
+              <GitHub />
+            </Button>
+            <Button
+              onClick={() => window.open('https://www.linkedin.com/in/jemimah-martinez-a0924a18b/')}
+            >
+              <LinkedIn />
+            </Button>
+            <Button
+              onClick={() => window.open('mailto:martinezjemimah@gmail.com')}
+            >
+              <Email />
+            </Button>
+          </RowFlexContainer>
+      </div>
+    </>
   );
 };
 

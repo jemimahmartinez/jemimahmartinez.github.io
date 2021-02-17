@@ -17,7 +17,8 @@ const styles = {
       color: '#C3073F !important'
     },
     'align-items': 'flex-end',
-    'z-index': '99'
+    'z-index': '99',
+    cursor: 'pointer',
   },
 };
 

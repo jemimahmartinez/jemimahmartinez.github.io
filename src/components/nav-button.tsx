@@ -20,7 +20,7 @@ const styles = {
 };
 
 type Type = "up" | "down";
-type Section = "#home" | "#about" | "#projects" | "#contact";
+export type Section = "#home" | "#about" | "#projects" | "#contact";
 
 interface IProps extends WithStylesProps<typeof styles> {
   classes: any;
