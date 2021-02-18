@@ -23,15 +23,32 @@ const styles = {
 
 interface IProps extends WithStylesProps<typeof styles> {
   classes: any;
+  setHomeActive: Function;
+  setAboutActive: Function; 
+  setProjectsActive: Function;
+  setContactActive: Function
 }
 
-const Home: React.FunctionComponent<IProps> = ({ classes }) => {
+const Home: React.FunctionComponent<IProps> = ({ 
+  classes,
+  setHomeActive,
+  setAboutActive,
+  setProjectsActive,
+  setContactActive
+ }) => {
     return (
       <>
         <div id="home" className={classes.Home}>
           <h4>Hi! My name is</h4>
           <h1>Jemimah Martinez</h1>
-          <NavButton type='down' section='#about' />
+          <NavButton 
+            type='down' 
+            section='#about' 
+            setHomeActive={setHomeActive}
+            setAboutActive={setAboutActive} 
+            setProjectsActive={setProjectsActive}
+            setContactActive={setContactActive}
+          />
         </div>
 
       </>

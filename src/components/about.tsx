@@ -45,12 +45,13 @@ const styles = {
 
 interface IProps extends WithStylesProps<typeof styles> {
   classes: any;
+  aboutActive: boolean;
 }
 
-const About: React.ComponentType<IProps> = ({ classes }) => {
+const About: React.ComponentType<IProps> = ({ classes, aboutActive }) => {
   return (
     <>
-      <NavArrow section='#about'/>
+      <NavArrow section='#about' active={aboutActive}/>
       <div id="about" className={classes.About}>
         <h1>About Me</h1>
         <RowFlexContainer center={true}>

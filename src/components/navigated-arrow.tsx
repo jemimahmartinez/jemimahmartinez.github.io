@@ -34,38 +34,48 @@ const styles = {
     'flex-direction': 'row',
     'justify-content': 'flex-end',
   },
+  noContainer: {
+    display: 'none',
+  }
 };
 
 interface IProps extends WithStylesProps<typeof styles> {
   classes: any;
   section: Section;
+  active: boolean;
 }
 
-const NavArrow: React.FunctionComponent<IProps> = ({ classes, section }) => {
-  if (section === '#about') {
-    return (
-      <div className={classes.overallContainer}>
-        <div className={classes.containerAbout}>
-          <NavTriangle />
+const NavArrow: React.FunctionComponent<IProps> = ({ classes, section, active }) => {
+  let containerAboutArrow, containerProjectsArrow, containerContactArrow;
+  switch(section) {
+    case '#about':
+      active ? containerAboutArrow = classes.containerAbout: containerAboutArrow = classes.noContainer;
+      return (
+        <div className={classes.overallContainer}>
+          <div className={containerAboutArrow}>
+            <NavTriangle />
+          </div>
         </div>
-      </div>
-    );
-  } else if (section === '#projects') {
-    return (
-      <div className={classes.overallContainer}>
-        <div className={classes.containerProjects}>
-          <NavTriangle />
+      );
+    case '#projects':
+      active ? containerProjectsArrow = classes.containerProjects: containerProjectsArrow = classes.noContainer;
+      return (
+        <div className={classes.overallContainer}>
+          <div className={containerProjectsArrow}>
+            <NavTriangle />
+          </div>
         </div>
-      </div>
-    );
+      );
+    default: // '#contact'
+      active ? containerContactArrow = classes.containerContact: containerContactArrow = classes.noContainer;
+      return (
+        <div className={classes.overallContainer}>
+          <div className={containerContactArrow}>
+            <NavTriangle />
+          </div>
+        </div>
+      );
   }
-  return (
-    <div className={classes.overallContainer}>
-      <div className={classes.containerContact}>
-        <NavTriangle />
-      </div>
-    </div>
-  );
 };
 
 export default withStyles(styles)(NavArrow);

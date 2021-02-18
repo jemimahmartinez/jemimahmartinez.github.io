@@ -17,6 +17,19 @@ const styles = {
     width: "100%",
     height: "100%",
   },
+  button: {
+    display: "block",
+    color: "white",
+    "text-align": "center",
+    padding: "14px 16px",
+    "text-decoration": "none",
+    "&:hover": {
+      "background-color": "#4E4E50 ",
+    },
+    "&:active": {
+        'background-color': '#C3073F',
+    },
+  },
 };
 
 type Type = "up" | "down";
@@ -26,12 +39,20 @@ interface IProps extends WithStylesProps<typeof styles> {
   classes: any;
   type: Type;
   section: Section;
+  setHomeActive: Function;
+  setAboutActive: Function;
+  setProjectsActive: Function;
+  setContactActive: Function;
 }
 
 const NavButton: React.FunctionComponent<IProps> = ({
   classes,
   type,
   section,
+  setHomeActive,
+  setAboutActive,
+  setProjectsActive,
+  setContactActive,
 }) => {
   if (type === "up") {
     return (
@@ -47,7 +68,12 @@ const NavButton: React.FunctionComponent<IProps> = ({
   return (
     <div className={classes.downButton}>
       <Button onClick={() => console.log('Down')}>
-        <a href={section} style={{  textDecoration: 'none'}}>
+        <a href={section} className={classes.button} onClick={()=>{
+            setHomeActive(false);
+            setAboutActive(true);
+            setProjectsActive(false);
+            setContactActive(false);
+          }}>
           <DownArrow />
         </a>
       </Button>

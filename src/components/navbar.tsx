@@ -17,49 +17,75 @@ const styles = {
   li: {
     width: '25%',
   },
-  a: {
-    display: "block",
-    color: "white",
-    "text-align": "center",
-    padding: "14px 16px",
-    "text-decoration": "none",
-    "&:hover": {
-      "background-color": "#4E4E50 ",
-    },
-    "&:active": {
-        'background-color': '#C3073F',
-    },
-  },
 };
 
 interface IProps extends WithStylesProps<typeof styles> {
   classes: any;
+  navHomeClass: any;
+  navAboutClass: any;
+  navProjectsClass: any;
+  navContactClass: any;
+  setHomeActive: Function;
+  setAboutActive: Function;
+  setProjectsActive: Function;
+  setContactActive: Function;
 }
 
-const NavBar: React.FunctionComponent<IProps> = ({ classes }) => {
+const NavBar: React.FunctionComponent<IProps> = ({ 
+  classes, 
+  navHomeClass,
+  navAboutClass,
+  navProjectsClass,
+  navContactClass,
+  setHomeActive,
+  setAboutActive,
+  setProjectsActive,
+  setContactActive
+}) => {
+
   return (
     <>
       <ul className={classes.navbar}>
         <li className={classes.li}>
-          <a href='#home' className={classes.a}>
+          <a href='#home' className={navHomeClass} onClick={()=>{
+            setHomeActive(true);
+            setAboutActive(false);
+            setProjectsActive(false);
+            setContactActive(false);
+            }}>
             Home
           </a>
           <div className={classes.triangleDown} />
         </li>
         <li className={classes.li}>
-          <a href='#about' className={classes.a}>
+          <a href='#about' className={navAboutClass} onClick={()=>{
+            setHomeActive(false);
+            setAboutActive(true);
+            setProjectsActive(false);
+            setContactActive(false);
+          }}>
             About Me
           </a>
           <div className={classes.triangleDown} />
         </li>
         <li className={classes.li}>
-          <a href='#projects' className={classes.a}>
+          <a href='#projects' className={navProjectsClass} onClick={()=>{
+            setHomeActive(false);
+            setAboutActive(false);
+            setProjectsActive(true);
+            setContactActive(false);
+            }}>
             Projects
           </a>
           <div className={classes.triangleDown} />
         </li>
         <li className={classes.li}>
-          <a href='#contact' className={classes.a}>
+          <a href='#contact' className={navContactClass} onClick={()=>{
+            setHomeActive(false);
+            setAboutActive(false);
+            setProjectsActive(false);
+            setContactActive(true);
+          }}>
             Contact
           </a>
           <div className={classes.triangleDown} />
