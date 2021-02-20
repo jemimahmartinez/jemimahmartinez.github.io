@@ -10,6 +10,7 @@ const styles = {
     'text-align': 'center',
     'min-height': '100vh',
     'min-width': '100vw',
+    overflow: 'hidden',
     'align-items': 'center',
     'flex-direction': 'column',
     'justify-content': 'center',

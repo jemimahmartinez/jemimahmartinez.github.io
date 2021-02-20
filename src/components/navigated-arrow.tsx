@@ -12,6 +12,7 @@ const styles = {
     position: 'sticky',
     'z-index': '99',
     top: '7.50%',
+    // transition: 'height 5s ease',
   },
   containerAbout: {
     width: '75%',

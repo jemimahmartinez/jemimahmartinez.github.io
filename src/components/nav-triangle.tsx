@@ -7,6 +7,8 @@ const styles = {
     margin: 'none',
     'justify-content': 'center',
     width: '33.33%',
+    // height: '100%',
+    // transition: 'height 1s ease',
   },
   triangleDown: {
     width: '0',
@@ -14,7 +16,6 @@ const styles = {
     'border-left': '50px solid transparent',
     'border-right': '50px solid transparent',
     'border-top': '25px solid #C3073F',
-    transition: 'height 1s',
   },
 };
 

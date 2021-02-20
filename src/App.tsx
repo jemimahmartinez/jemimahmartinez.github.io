@@ -33,6 +33,7 @@ const styles = {
     "&:active": {
         'background-color': '#C3073F',
     },
+    transition: 'height 1s ease',
   },
   active: {
     display: "block",
@@ -42,11 +43,17 @@ const styles = {
     "text-decoration": "none",
     'background-color': '#C3073F',
   },
+  line: {
+    'background-color': '#FFFFFF',
+    width: '100%',
+    height: '10px'
+  },
 };
 
 interface IProps extends WithStylesProps<typeof styles> {
   classes: any;
 }
+
 const App: React.ComponentType<IProps> = ({ classes }) => {
   let navHomeClass, navAboutClass, navProjectsClass, navContactClass;
 
@@ -81,6 +88,36 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
     navProjectsClass = classes.a;
     navContactClass = classes.a;
   }
+
+  window.onscroll = function() {
+    console.log(window.pageYOffset);
+    if (window.pageYOffset < 800) {
+      setHomeActive(true);
+      setAboutActive(false);
+      setProjectsActive(false);
+      setContactActive(false);
+    } else if ( window.pageYOffset > 800 && window.pageYOffset < 1475) {
+      setHomeActive(false);
+      setAboutActive(true);
+      setProjectsActive(false);
+      setContactActive(false);
+    } else if (window.pageYOffset > 1500 && window.pageYOffset < 2250) {
+      setHomeActive(false);
+      setAboutActive(false);
+      setProjectsActive(true);
+      setContactActive(false);
+    } else if (window.pageYOffset > 2300) {
+      setHomeActive(false);
+      setAboutActive(false);
+      setProjectsActive(false);
+      setContactActive(true);
+    } else {
+      setHomeActive(false);
+      setAboutActive(false);
+      setProjectsActive(false);
+      setContactActive(false);
+    }
+}
 
   return (
       <div className={classes.App}>
