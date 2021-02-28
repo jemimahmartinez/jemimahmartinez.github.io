@@ -55,7 +55,6 @@ const NavBar: React.FunctionComponent<IProps> = ({
             }}>
             Home
           </a>
-          <div className={classes.triangleDown} />
         </li>
         <li className={classes.li}>
           <a href='#about' className={navAboutClass} onClick={()=>{
@@ -66,7 +65,6 @@ const NavBar: React.FunctionComponent<IProps> = ({
           }}>
             About Me
           </a>
-          <div className={classes.triangleDown} />
         </li>
         <li className={classes.li}>
           <a href='#projects' className={navProjectsClass} onClick={()=>{
@@ -77,7 +75,6 @@ const NavBar: React.FunctionComponent<IProps> = ({
             }}>
             Projects
           </a>
-          <div className={classes.triangleDown} />
         </li>
         <li className={classes.li}>
           <a href='#contact' className={navContactClass} onClick={()=>{
@@ -88,7 +85,6 @@ const NavBar: React.FunctionComponent<IProps> = ({
           }}>
             Contact
           </a>
-          <div className={classes.triangleDown} />
         </li>
       </ul>
     </>

@@ -30,9 +30,6 @@ const styles = {
     "&:hover": {
       "background-color": "#4E4E50 ",
     },
-    "&:active": {
-        'background-color': '#C3073F',
-    },
     transition: 'height 1s ease',
   },
   active: {
@@ -42,11 +39,6 @@ const styles = {
     padding: "14px 16px",
     "text-decoration": "none",
     'background-color': '#C3073F',
-  },
-  line: {
-    'background-color': '#FFFFFF',
-    width: '100%',
-    height: '10px'
   },
 };
 
@@ -59,8 +51,11 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
 
   const [homeActive, setHomeActive] = useState(false);
   const [aboutActive, setAboutActive] = useState(false);
+  const [aboutActivate, setAboutActivate] = useState(false);
   const [projectsActive, setProjectsActive] = useState(false);
+  const [projectsActivate, setProjectsActivate] = useState(false);
   const [contactActive, setContactActive] = useState(false);
+  const [contactActivate, setContactActivate] = useState(false);
 
   if (homeActive) {
     navHomeClass = classes.active;
@@ -96,26 +91,41 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
       setAboutActive(false);
       setProjectsActive(false);
       setContactActive(false);
+      setAboutActivate(false);
+      setProjectsActivate(false);
+      setContactActivate(false);
     } else if ( window.pageYOffset > 800 && window.pageYOffset < 1475) {
       setHomeActive(false);
       setAboutActive(true);
       setProjectsActive(false);
       setContactActive(false);
-    } else if (window.pageYOffset > 1500 && window.pageYOffset < 2250) {
+      setAboutActivate(true);
+      setProjectsActivate(false);
+      setContactActivate(false);
+    } else if (window.pageYOffset > 1550 && window.pageYOffset < 2250) {
       setHomeActive(false);
       setAboutActive(false);
       setProjectsActive(true);
       setContactActive(false);
+      setAboutActivate(false);
+      setProjectsActivate(true);
+      setContactActivate(false);
     } else if (window.pageYOffset > 2300) {
       setHomeActive(false);
       setAboutActive(false);
       setProjectsActive(false);
       setContactActive(true);
+      setAboutActivate(false);
+      setProjectsActivate(false);
+      setContactActivate(true);
     } else {
       setHomeActive(false);
       setAboutActive(false);
       setProjectsActive(false);
       setContactActive(false);
+      setAboutActivate(false);
+      setProjectsActivate(false);
+      setContactActivate(false);
     }
 }
 
@@ -137,9 +147,9 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
           setProjectsActive={setProjectsActive}
           setContactActive={setContactActive}
         />
-        <About aboutActive={aboutActive}/>
-        <Projects projectsActive={projectsActive}/>
-        <Contact contactActive={contactActive}/>
+        <About aboutActivate={aboutActivate}/>
+        <Projects projectsActivate={projectsActivate}/>
+        <Contact contactActivate={contactActivate}/>
       </div>
   );
 };

@@ -26,13 +26,13 @@ const styles = {
 
 interface IProps extends WithStylesProps<typeof styles> {
   classes: any;
-  contactActive: boolean;
+  contactActivate: boolean;
 }
 
-const Contact: React.FunctionComponent<IProps> = ({ classes, contactActive }) => {
+const Contact: React.FunctionComponent<IProps> = ({ classes, contactActivate }) => {
   return (
     <>
-      <NavArrow section='#contact' active={contactActive}/>
+      <NavArrow section='#contact' active={contactActivate}/>
       <div id='contact' className={classes.Contact}>
         <h1>Contact me here!</h1>
           <RowFlexContainer center={true}>

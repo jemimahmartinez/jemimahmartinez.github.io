@@ -21,13 +21,13 @@ const styles = {
 
 interface IProps extends WithStylesProps<typeof styles> {
   classes: any;
-  projectsActive: boolean;
+  projectsActivate: boolean;
 }
 
-const Projects: React.FunctionComponent<IProps> = ({ classes, projectsActive }) => {
+const Projects: React.FunctionComponent<IProps> = ({ classes, projectsActivate }) => {
   return (
     <>
-      <NavArrow section='#projects' active={projectsActive}/>
+      <NavArrow section='#projects' active={projectsActivate}/>
       <div id='projects' className={classes.Projects}>
         <h1>My Projects</h1>
         <p>blah blah blah</p>
