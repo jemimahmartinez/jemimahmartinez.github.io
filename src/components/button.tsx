@@ -9,12 +9,9 @@ const styles = {
     border: 'none',
     outline: 'none',
     margin: '0px 20px 0px 20px',
-    transition:'width .1s, height .1s',
-    transitionTimingFunction: 'ease',
+    transition: 'color 0.75s',
     '&:hover': {
-      width: '100px !important',
-      height: '100px !important',
-      color: '#C3073F !important'
+      color: '#C3073F !important',
     },
     'align-items': 'flex-end',
     'z-index': '99',

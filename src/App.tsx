@@ -30,7 +30,6 @@ const styles = {
     "&:hover": {
       "background-color": "#4E4E50 ",
     },
-    transition: 'height 1s ease',
   },
   active: {
     display: "block",

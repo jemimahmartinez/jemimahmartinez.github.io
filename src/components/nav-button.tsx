@@ -18,17 +18,20 @@ const styles = {
     height: "100%",
   },
   button: {
-    display: "block",
-    color: "white",
-    "text-align": "center",
-    padding: "14px 16px",
-    "text-decoration": "none",
-    "&:hover": {
-      "background-color": "#4E4E50 ",
+    color: '#ffffff !important',
+    height: '75px !important',
+    width: '75px !important',
+    'background-color': 'transparent',
+    border: 'none',
+    outline: 'none',
+    margin: '0px 20px 0px 20px',
+    transition: 'color 0.75s',
+    '&:hover': {
+      color: '#C3073F !important',
     },
-    "&:active": {
-        'background-color': '#C3073F',
-    },
+    'align-items': 'flex-end',
+    'z-index': '99',
+    cursor: 'pointer',
   },
 };
 
