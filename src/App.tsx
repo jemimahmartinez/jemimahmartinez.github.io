@@ -85,7 +85,7 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
 
   window.onscroll = function() {
     console.log(window.pageYOffset);
-    if (window.pageYOffset < 800) {
+    if (window.pageYOffset < (0.25*document.body.scrollHeight)) { // 800 25%
       setHomeActive(true);
       setAboutActive(false);
       setProjectsActive(false);
@@ -93,7 +93,7 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
       setAboutActivate(false);
       setProjectsActivate(false);
       setContactActivate(false);
-    } else if ( window.pageYOffset > 800 && window.pageYOffset < 1475) {
+    } else if ( window.pageYOffset > (0.25*document.body.scrollHeight) && window.pageYOffset < (0.50*document.body.scrollHeight)) { // 800 1475 25% - 50%
       setHomeActive(false);
       setAboutActive(true);
       setProjectsActive(false);
@@ -101,7 +101,7 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
       setAboutActivate(true);
       setProjectsActivate(false);
       setContactActivate(false);
-    } else if (window.pageYOffset > 1550 && window.pageYOffset < 2250) {
+    } else if (window.pageYOffset > (0.50*document.body.scrollHeight) && window.pageYOffset < (0.74*document.body.scrollHeight)) { // 1550 2250 50% - 75%
       setHomeActive(false);
       setAboutActive(false);
       setProjectsActive(true);
@@ -109,7 +109,7 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
       setAboutActivate(false);
       setProjectsActivate(true);
       setContactActivate(false);
-    } else if (window.pageYOffset > 2300) {
+    } else if (window.pageYOffset > (0.75*document.body.scrollHeight)) { // 2300 75% - 100%
       setHomeActive(false);
       setAboutActive(false);
       setProjectsActive(false);
@@ -127,6 +127,13 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
       setContactActivate(false);
     }
 }
+
+// console.log('outer: ', window.outerHeight);
+// console.log('inner: ', window.innerHeight);
+// let heightApp = document.getElementsByClassName("App").scrollHeight;
+// console.log({heightApp});
+
+// console.log("Page height:",document.body.scrollHeight);
 
   return (
       <div className={classes.App}>
