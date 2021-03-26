@@ -11,7 +11,7 @@ const styles = {
     'justify-content': 'flex-end',
     position: 'sticky',
     'z-index': '99',
-    top: '7.50%',
+    top: '6%', // 7.50%
     // transition: 'height 5s ease',
   },
   containerAbout: {

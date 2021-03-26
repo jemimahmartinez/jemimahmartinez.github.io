@@ -109,7 +109,7 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
       setAboutActivate(false);
       setProjectsActivate(true);
       setContactActivate(false);
-    } else if (window.pageYOffset > (0.75*document.body.scrollHeight)) { // 2300 75% - 100%
+    } else if (window.pageYOffset > (0.745*document.body.scrollHeight)) { // 2300 75% - 100%
       setHomeActive(false);
       setAboutActive(false);
       setProjectsActive(false);
@@ -127,13 +127,6 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
       setContactActivate(false);
     }
 }
-
-// console.log('outer: ', window.outerHeight);
-// console.log('inner: ', window.innerHeight);
-// let heightApp = document.getElementsByClassName("App").scrollHeight;
-// console.log({heightApp});
-
-// console.log("Page height:",document.body.scrollHeight);
 
   return (
       <div className={classes.App}>
