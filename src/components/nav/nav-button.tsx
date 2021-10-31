@@ -1,8 +1,8 @@
 import withStyles, { WithStylesProps } from "react-jss";
 
-import Button from "./button";
-import UpArrow from "./icons/up-arrow";
-import DownArrow from "./icons/down-arrow";
+import Button from "../button";
+import UpArrow from "../icons/up-arrow";
+import DownArrow from "../icons/down-arrow";
 
 const styles = {
   downButton: {
@@ -18,20 +18,20 @@ const styles = {
     height: "100%",
   },
   button: {
-    color: '#ffffff !important',
-    height: '75px !important',
-    width: '75px !important',
-    'background-color': 'transparent',
-    border: 'none',
-    outline: 'none',
-    margin: '0px 20px 0px 20px',
-    transition: 'color 0.75s',
-    '&:hover': {
-      color: '#C3073F !important',
+    color: "#ffffff !important",
+    height: "75px !important",
+    width: "75px !important",
+    "background-color": "transparent",
+    border: "none",
+    outline: "none",
+    margin: "0px 20px 0px 20px",
+    transition: "color 0.75s",
+    "&:hover": {
+      color: "#C3073F !important",
     },
-    'align-items': 'flex-end',
-    'z-index': '99',
-    cursor: 'pointer',
+    "align-items": "flex-end",
+    "z-index": "99",
+    cursor: "pointer",
   },
 };
 
@@ -60,8 +60,8 @@ const NavButton: React.FunctionComponent<IProps> = ({
   if (type === "up") {
     return (
       <div className={classes.upButton}>
-        <Button onClick={() => console.log('Up')}>
-          <a href={section} style={{  textDecoration: 'none'}}>
+        <Button onClick={() => console.log("Up")}>
+          <a href={section} style={{ textDecoration: "none" }}>
             <UpArrow />
           </a>
         </Button>
@@ -70,13 +70,17 @@ const NavButton: React.FunctionComponent<IProps> = ({
   }
   return (
     <div className={classes.downButton}>
-      <Button onClick={() => console.log('Down')}>
-        <a href={section} className={classes.button} onClick={()=>{
+      <Button onClick={() => console.log("Down")}>
+        <a
+          href={section}
+          className={classes.button}
+          onClick={() => {
             setHomeActive(false);
             setAboutActive(true);
             setProjectsActive(false);
             setContactActive(false);
-          }}>
+          }}
+        >
           <DownArrow />
         </a>
       </Button>

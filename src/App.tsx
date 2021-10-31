@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
-import './App.css';
-import withStyles, { WithStylesProps } from 'react-jss';
+import React, { useState } from "react";
+import "./App.css";
+import withStyles, { WithStylesProps } from "react-jss";
 
-import Home from './components/home';
-import About from './components/about';
-import Projects from './components/projects';
-import Contact from './components/contact';
-import NavBar from './components/navbar';
+import Home from "./components/sections/home";
+import About from "./components/sections/about";
+import Projects from "./components/sections/projects";
+import Contact from "./components/sections/contact";
+import NavBar from "./components/nav/navbar";
 
 const styles = {
   App: {
-    'min-height': '100vh',
-    width: '100%',
-    display: 'flex',
-    'flex-direction': 'column',
-    'align-items': 'center',
-    'justify-content': 'center',
-    'font-size': 'calc(10px + 2vmin)',
-    'font-family': 'Montserrat, sans-serif',
-    color: 'white',
-    'background-color': '#000000'
+    "min-height": "100vh",
+    width: "100%",
+    display: "flex",
+    "flex-direction": "column",
+    "align-items": "center",
+    "justify-content": "center",
+    "font-size": "calc(10px + 2vmin)",
+    "font-family": "Montserrat, sans-serif",
+    color: "white",
+    "background-color": "#000000",
   },
   a: {
     display: "block",
@@ -37,7 +37,7 @@ const styles = {
     "text-align": "center",
     padding: "14px 16px",
     "text-decoration": "none",
-    'background-color': '#C3073F',
+    "background-color": "#C3073F",
   },
 };
 
@@ -83,9 +83,10 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
     navContactClass = classes.a;
   }
 
-  window.onscroll = function() {
+  window.onscroll = function () {
     console.log(window.pageYOffset);
-    if (window.pageYOffset < (0.25*document.body.scrollHeight)) { // 800 25%
+    if (window.pageYOffset < 0.25 * document.body.scrollHeight) {
+      // 800 25%
       setHomeActive(true);
       setAboutActive(false);
       setProjectsActive(false);
@@ -93,7 +94,11 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
       setAboutActivate(false);
       setProjectsActivate(false);
       setContactActivate(false);
-    } else if ( window.pageYOffset > (0.25*document.body.scrollHeight) && window.pageYOffset < (0.50*document.body.scrollHeight)) { // 800 1475 25% - 50%
+    } else if (
+      window.pageYOffset > 0.25 * document.body.scrollHeight &&
+      window.pageYOffset < 0.5 * document.body.scrollHeight
+    ) {
+      // 800 1475 25% - 50%
       setHomeActive(false);
       setAboutActive(true);
       setProjectsActive(false);
@@ -101,7 +106,11 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
       setAboutActivate(true);
       setProjectsActivate(false);
       setContactActivate(false);
-    } else if (window.pageYOffset > (0.50*document.body.scrollHeight) && window.pageYOffset < (0.74*document.body.scrollHeight)) { // 1550 2250 50% - 75%
+    } else if (
+      window.pageYOffset > 0.5 * document.body.scrollHeight &&
+      window.pageYOffset < 0.74 * document.body.scrollHeight
+    ) {
+      // 1550 2250 50% - 75%
       setHomeActive(false);
       setAboutActive(false);
       setProjectsActive(true);
@@ -109,7 +118,8 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
       setAboutActivate(false);
       setProjectsActivate(true);
       setContactActivate(false);
-    } else if (window.pageYOffset > (0.745*document.body.scrollHeight)) { // 2300 75% - 100%
+    } else if (window.pageYOffset > 0.745 * document.body.scrollHeight) {
+      // 2300 75% - 100%
       setHomeActive(false);
       setAboutActive(false);
       setProjectsActive(false);
@@ -126,30 +136,30 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
       setProjectsActivate(false);
       setContactActivate(false);
     }
-}
+  };
 
   return (
-      <div className={classes.App}>
-        <Home
-          setHomeActive={setHomeActive}
-          setAboutActive={setAboutActive}
-          setProjectsActive={setProjectsActive}
-          setContactActive={setContactActive}
-        />
-        <NavBar 
-          navHomeClass={navHomeClass} 
-          navAboutClass={navAboutClass} 
-          navProjectsClass={navProjectsClass} 
-          navContactClass={navContactClass} 
-          setHomeActive={setHomeActive}
-          setAboutActive={setAboutActive}
-          setProjectsActive={setProjectsActive}
-          setContactActive={setContactActive}
-        />
-        <About aboutActivate={aboutActivate}/>
-        <Projects projectsActivate={projectsActivate}/>
-        <Contact contactActivate={contactActivate}/>
-      </div>
+    <div className={classes.App}>
+      <Home
+        setHomeActive={setHomeActive}
+        setAboutActive={setAboutActive}
+        setProjectsActive={setProjectsActive}
+        setContactActive={setContactActive}
+      />
+      <NavBar
+        navHomeClass={navHomeClass}
+        navAboutClass={navAboutClass}
+        navProjectsClass={navProjectsClass}
+        navContactClass={navContactClass}
+        setHomeActive={setHomeActive}
+        setAboutActive={setAboutActive}
+        setProjectsActive={setProjectsActive}
+        setContactActive={setContactActive}
+      />
+      <About aboutActivate={aboutActivate} />
+      <Projects projectsActivate={projectsActivate} />
+      <Contact contactActivate={contactActivate} />
+    </div>
   );
 };
 
