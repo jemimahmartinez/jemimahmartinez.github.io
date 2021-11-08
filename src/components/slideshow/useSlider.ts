@@ -54,8 +54,6 @@ const useSlider = ({
   const startSlider = () => {
     slideImage.current.style.backgroundImage = `linear-gradient(to right, rgba(34, 34, 34, 0.4), rgba(68, 68, 68, 0.4)), url(${images[0].src})`;
     imageSizing();
-    // slideImage.current.style.backgroundImage = `url(${images[0].src})`;
-    // slideImage.current.style.backgroundImage = "url(" + images[0].src + ")";
     slideText.current.innerHTML = images[0].text;
     slideSubTitle.current.innerHTML = images[0].subTitle;
     slideTitle.current.innerHTML = images[0].title;
@@ -68,7 +66,6 @@ const useSlider = ({
       images[slide - 1].src
     })`;
     imageSizing();
-    // slideImage.current.style.backgroundImage = `url(${images[slide - 1].src})`;
     slideText.current.innerHTML = images[slide - 1].text;
     slideSubTitle.current.innerHTML = images[slide - 1].subTitle;
     slideTitle.current.innerHTML = images[slide - 1].title;
@@ -103,9 +100,6 @@ const useSlider = ({
       images[slideCounter + 1].src
     })`;
     imageSizing();
-    // slideImage.current.style.backgroundImage = `url(${
-    //   images[slideCounter + 1].src
-    // })`;
     slideText.current.innerHTML = images[slideCounter + 1].text;
     slideSubTitle.current.innerHTML = images[slideCounter + 1].subTitle;
     slideTitle.current.innerHTML = images[slideCounter + 1].title;
