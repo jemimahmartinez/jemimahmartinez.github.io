@@ -1,5 +1,7 @@
 import withStyles, { WithStylesProps } from "react-jss";
 
+import Slider from "../slideshow/slider";
+import Slides from "../slideshow/slides";
 import NavArrow from "../nav/navigated-arrow";
 
 const styles = {
@@ -14,7 +16,7 @@ const styles = {
     "align-items": "center",
     "flex-direction": "column",
     "justify-content": "center",
-    "background-color": "#000000",
+    // "background-color": "#000000",
     position: "relative",
   },
 };
@@ -32,8 +34,7 @@ const Projects: React.FunctionComponent<IProps> = ({
     <>
       <NavArrow section="#projects" active={projectsActivate} />
       <div id="projects" className={classes.Projects}>
-        <h1>My Projects</h1>
-        <p>blah blah blah</p>
+        <Slider images={Slides} />
       </div>
     </>
   );

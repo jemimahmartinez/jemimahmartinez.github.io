@@ -84,7 +84,7 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
   }
 
   window.onscroll = function () {
-    console.log(window.pageYOffset);
+    // console.log(window.pageYOffset);
     if (window.pageYOffset < 0.25 * document.body.scrollHeight) {
       // 800 25%
       setHomeActive(true);
