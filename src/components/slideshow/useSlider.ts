@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 // https://www.ibrahima-ndaw.com/blog/react-fullscreen-slider/
 
@@ -19,46 +19,61 @@ const useSlider = ({
   slideURL,
   images,
 }: Props) => {
-  let slideCounter = 0;
+  const [image, setImage] = useState(images[0].src);
+  const [text, setText] = useState(images[0].text);
+  const [subTitle, setSubTitle] = useState(images[0].subTitle);
+  const [title, setTitle] = useState(images[0].title);
+  const [url, setURL] = useState(images[0].url);
+  const [slideCounter, setSlideCounter] = useState(0);
 
-  //   const [image, setImage] = useState(images[0].src);
-  //   const [text, setText] = useState(images[0].text);
-  //   const [subTitle, setSubTitle] = useState(images[0].subTitle);
-  //   const [title, setTitle] = useState(images[0].title);
-  //   const [url, setURL] = useState(images[0].url);
+  const setSlider = useCallback(() => {
+    setImage(slideImage);
+    setText(slideText);
+    setSubTitle(slideSubTitle);
+    setTitle(slideTitle);
+    setURL(slideURL);
+  }, [slideImage, slideSubTitle, slideText, slideTitle, slideURL]);
 
-  //useState to keep track of which slide the user is on instead on constantly keeping to the first slide
-  useEffect(() => startSlider());
-  //   useEffect(() => currentSlider());
-
-  //   const currentSlider = () => {
-  //     slideImage.current.style.backgroundImage = image;
-  //     slideText.current.innerHTML = text;
-  //     slideSubTitle.current.innerHTML = subTitle;
-  //     slideTitle.current.innerHTML = title;
-  //     slideURL.current.innerHTML = url;
-  //   };
-
-  //   const setSlider = () => {
-  //     setImage(slideImage);
-  //     setText(slideText);
-  //     setSubTitle(slideSubTitle);
-  //     setTitle(slideTitle);
-  //     setURL(slideURL);
-  //   };
-
-  const imageSizing = () => {
+  const imageSizing = useCallback(() => {
     slideImage.current.style.backgroundRepeat = "no-repeat";
     slideImage.current.style.backgroundSize = "cover";
-  };
-  const startSlider = () => {
+  }, [slideImage]);
+
+  const startSlider = useCallback(() => {
     slideImage.current.style.backgroundImage = `linear-gradient(to right, rgba(34, 34, 34, 0.4), rgba(68, 68, 68, 0.4)), url(${images[0].src})`;
     imageSizing();
     slideText.current.innerHTML = images[0].text;
     slideSubTitle.current.innerHTML = images[0].subTitle;
     slideTitle.current.innerHTML = images[0].title;
     slideURL.current.innerHTML = images[0].url;
-    // setSlider();
+    setSlider();
+  }, [
+    imageSizing,
+    images,
+    setSlider,
+    slideImage,
+    slideSubTitle,
+    slideText,
+    slideTitle,
+    slideURL,
+  ]);
+
+  useEffect(() => {
+    startSlider();
+  }, [startSlider]);
+
+  // useState to keep track of which slide the user is on instead on constantly keeping to the first slide
+  useEffect(() => {
+    currentSlider();
+  }, [useSlider]);
+
+  const currentSlider = () => {
+    slideImage.current.style.backgroundImage = image;
+    slideText.current.innerHTML = text;
+    slideSubTitle.current.innerHTML = subTitle;
+    slideTitle.current.innerHTML = title;
+    slideURL.current.innerHTML = url;
+    setSlideCounter(slideCounter);
   };
 
   const handleSlide = (slide: any) => {
@@ -70,7 +85,7 @@ const useSlider = ({
     slideSubTitle.current.innerHTML = images[slide - 1].subTitle;
     slideTitle.current.innerHTML = images[slide - 1].title;
     slideURL.current.innerHTML = images[slide - 1].url;
-    // setSlider();
+    setSlider();
     animateSlide(slideImage);
   };
 
@@ -83,29 +98,33 @@ const useSlider = ({
 
   const goToPreviousSlide = () => {
     if (slideCounter === 0) {
-      handleSlide(images.length);
-      slideCounter = images.length;
+      let length = images.length;
+      handleSlide(length);
+      length--;
+      setSlideCounter(images.length - 1);
+    } else {
+      handleSlide(slideCounter);
+      setSlideCounter(slideCounter - 1);
     }
-    handleSlide(slideCounter);
-    slideCounter--;
   };
 
   const goToNextSlide = () => {
     if (slideCounter === images.length - 1) {
       startSlider();
-      slideCounter = -1;
+      setSlideCounter(slideCounter - images.length + 1);
       animateSlide(slideImage);
+    } else {
+      slideImage.current.style.backgroundImage = `linear-gradient(to right, rgba(34, 34, 34, 0.4), rgba(68, 68, 68, 0.4)), url(${
+        images[slideCounter + 1].src
+      })`;
+      imageSizing();
+      slideText.current.innerHTML = images[slideCounter + 1].text;
+      slideSubTitle.current.innerHTML = images[slideCounter + 1].subTitle;
+      slideTitle.current.innerHTML = images[slideCounter + 1].title;
+      slideURL.current.innerHTML = images[slideCounter + 1].url;
+      setSlider();
+      setSlideCounter(slideCounter + 1);
     }
-    slideImage.current.style.backgroundImage = `linear-gradient(to right, rgba(34, 34, 34, 0.4), rgba(68, 68, 68, 0.4)), url(${
-      images[slideCounter + 1].src
-    })`;
-    imageSizing();
-    slideText.current.innerHTML = images[slideCounter + 1].text;
-    slideSubTitle.current.innerHTML = images[slideCounter + 1].subTitle;
-    slideTitle.current.innerHTML = images[slideCounter + 1].title;
-    slideURL.current.innerHTML = images[slideCounter + 1].url;
-    // setSlider();
-    slideCounter++;
     animateSlide(slideImage);
   };
 

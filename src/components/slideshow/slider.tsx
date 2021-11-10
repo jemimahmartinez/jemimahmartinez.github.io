@@ -108,7 +108,7 @@ const Slider: React.FunctionComponent<IProps> = ({ classes, images }) => {
             <h6 ref={slideSubTitle}>{null}</h6>
             <div className={classes.infoButton}>
               <Button onClick={() => window.open(getLink())}>
-                <Information ref={slideURL} />
+                <Information />
               </Button>
             </div>
           </div>
