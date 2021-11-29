@@ -8,9 +8,16 @@ import Information from "../icons/information";
 import useSlider from "./useSlider";
 
 const styles = {
+  "@keyframes fadeIn": {
+    "0%": { opacity: 0 },
+    "100%": { opacity: 1 },
+  },
   image: {
+    animationName: "$fadeIn",
+    animationDuration: "1s",
     height: "100vh",
   },
+
   sliderContainer: {
     display: "flex",
     "align-items": "center",
@@ -70,7 +77,7 @@ interface IProps extends WithStylesProps<typeof styles> {
 }
 
 const Slider: React.FunctionComponent<IProps> = ({ classes, images }) => {
-  const slideImage = useRef(null);
+  const slideImage = useRef<null | HTMLDivElement>(null);
   const slideText = useRef(null);
   const slideSubTitle = useRef(null);
   const slideTitle = useRef(null);

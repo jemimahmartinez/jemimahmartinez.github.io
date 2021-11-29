@@ -65,6 +65,7 @@ const useSlider = ({
   // useState to keep track of which slide the user is on instead on constantly keeping to the first slide
   useEffect(() => {
     currentSlider();
+    animateSlide(slideImage);
   }, [useSlider]);
 
   const currentSlider = () => {
@@ -124,8 +125,8 @@ const useSlider = ({
       slideURL.current.innerHTML = images[slideCounter + 1].url;
       setSlider();
       setSlideCounter(slideCounter + 1);
+      animateSlide(slideImage);
     }
-    animateSlide(slideImage);
   };
 
   return { goToPreviousSlide, goToNextSlide };
