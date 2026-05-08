@@ -36,7 +36,7 @@ const styles = {
 };
 
 type Type = "up" | "down";
-export type Section = "#home" | "#about" | "#projects" | "#contact";
+export type Section = "#home" | "#about" | "#projects" | "#insights" | "#contact";
 
 interface IProps extends WithStylesProps<typeof styles> {
   classes: any;

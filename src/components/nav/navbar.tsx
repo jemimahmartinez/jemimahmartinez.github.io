@@ -16,7 +16,7 @@ const styles = {
     "z-index": "101",
   },
   li: {
-    width: "25%",
+    width: "20%",
   },
 };
 
@@ -25,10 +25,12 @@ interface IProps extends WithStylesProps<typeof styles> {
   navHomeClass: any;
   navAboutClass: any;
   navProjectsClass: any;
+  navInsightsClass: any;
   navContactClass: any;
   setHomeActive: Function;
   setAboutActive: Function;
   setProjectsActive: Function;
+  setInsightsActive: Function;
   setContactActive: Function;
 }
 
@@ -37,10 +39,12 @@ const NavBar: React.FunctionComponent<IProps> = ({
   navHomeClass,
   navAboutClass,
   navProjectsClass,
+  navInsightsClass,
   navContactClass,
   setHomeActive,
   setAboutActive,
   setProjectsActive,
+  setInsightsActive,
   setContactActive,
 }) => {
   return (
@@ -54,6 +58,7 @@ const NavBar: React.FunctionComponent<IProps> = ({
               setHomeActive(true);
               setAboutActive(false);
               setProjectsActive(false);
+              setInsightsActive(false);
               setContactActive(false);
             }}
           >
@@ -68,6 +73,7 @@ const NavBar: React.FunctionComponent<IProps> = ({
               setHomeActive(false);
               setAboutActive(true);
               setProjectsActive(false);
+              setInsightsActive(false);
               setContactActive(false);
             }}
           >
@@ -82,10 +88,26 @@ const NavBar: React.FunctionComponent<IProps> = ({
               setHomeActive(false);
               setAboutActive(false);
               setProjectsActive(true);
+              setInsightsActive(false);
               setContactActive(false);
             }}
           >
             Projects
+          </a>
+        </li>
+        <li className={classes.li}>
+          <a
+            href="#insights"
+            className={navInsightsClass}
+            onClick={() => {
+              setHomeActive(false);
+              setAboutActive(false);
+              setProjectsActive(false);
+              setInsightsActive(true);
+              setContactActive(false);
+            }}
+          >
+            Insights
           </a>
         </li>
         <li className={classes.li}>
@@ -96,6 +118,7 @@ const NavBar: React.FunctionComponent<IProps> = ({
               setHomeActive(false);
               setAboutActive(false);
               setProjectsActive(false);
+              setInsightsActive(false);
               setContactActive(true);
             }}
           >

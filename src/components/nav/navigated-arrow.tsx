@@ -28,6 +28,13 @@ const styles = {
     "flex-direction": "row",
     "justify-content": "space-evenly",
   },
+  containerInsights: {
+    width: "60%",
+    height: "100%",
+    display: "flex",
+    "flex-direction": "row",
+    "justify-content": "flex-end",
+  },
   containerContact: {
     width: "75%",
     height: "100%",
@@ -51,7 +58,10 @@ const NavArrow: React.FunctionComponent<IProps> = ({
   section,
   active,
 }) => {
-  let containerAboutArrow, containerProjectsArrow, containerContactArrow;
+  let containerAboutArrow,
+    containerProjectsArrow,
+    containerInsightsArrow,
+    containerContactArrow;
   switch (section) {
     case "#about":
       active
@@ -71,6 +81,17 @@ const NavArrow: React.FunctionComponent<IProps> = ({
       return (
         <div className={classes.overallContainer}>
           <div className={containerProjectsArrow}>
+            <NavTriangle />
+          </div>
+        </div>
+      );
+    case "#insights":
+      active
+        ? (containerInsightsArrow = classes.containerInsights)
+        : (containerInsightsArrow = classes.noContainer);
+      return (
+        <div className={classes.overallContainer}>
+          <div className={containerInsightsArrow}>
             <NavTriangle />
           </div>
         </div>
