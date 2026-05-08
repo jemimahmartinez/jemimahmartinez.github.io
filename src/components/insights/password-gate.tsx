@@ -19,15 +19,11 @@ const styles = {
     "align-items": "center",
     gap: "16px",
     padding: "24px",
-    "max-width": "420px",
-    width: "80%",
+    "max-width": "600px",
+    width: "90%",
     "background-color": "#1A1A1D",
     border: "1px solid #3E0C0C",
     "border-radius": "8px",
-  },
-  heading: {
-    margin: "0",
-    "font-size": "1.2em",
   },
   subheading: {
     margin: "0",
@@ -101,9 +97,8 @@ const PasswordGate: React.FunctionComponent<IProps> = ({
 
   return (
     <div className={classes.gate}>
-      <h2 className={classes.heading}>🔒 Insights</h2>
       <p className={classes.subheading}>
-        Enter the password to view this section.
+        🔒 Enter the password to view this section.
       </p>
       <form className={classes.form} onSubmit={handleSubmit}>
         <input

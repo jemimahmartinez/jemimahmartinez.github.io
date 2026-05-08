@@ -17,12 +17,9 @@ const styles = {
     "min-width": "100vw",
     "align-items": "center",
     "flex-direction": "column",
-    "justify-content": "flex-start",
+    "justify-content": "center",
     "background-color": "#000000",
     position: "relative",
-    "padding-top": "5vh",
-    "padding-bottom": "5vh",
-    "box-sizing": "border-box",
   },
   heading: {
     margin: "0 0 24px 0",
