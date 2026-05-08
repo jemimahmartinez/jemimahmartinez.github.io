@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import withStyles, { WithStylesProps } from "react-jss";
 
 import Button from "../button";
@@ -16,6 +16,7 @@ const styles = {
     animationName: "$fadeIn",
     animationDuration: "1s",
     height: "100vh",
+    position: "relative",
   },
 
   sliderContainer: {
@@ -29,9 +30,9 @@ const styles = {
   bodyContainer: {
     "text-align": "left",
     width: "50%",
-    // "align-items": "flex-end",
-    // position: "relative",
-    // top: "15%",
+    "@media (max-width: 600px)": {
+      width: "100%",
+    },
   },
   text: {
     "font-size": "1rem",
@@ -46,13 +47,16 @@ const styles = {
     "background-color": "transparent",
     border: "none",
     outline: "none",
-    margin: "0px 60px 0px 20px",
+    margin: "0px 20px",
     transition: "color 0.75s",
     "&:hover": {
       color: "#5E1219 !important",
     },
     "z-index": "99",
     cursor: "pointer",
+    "@media (max-width: 600px)": {
+      display: "none",
+    },
   },
   subTitleContainer: {
     display: "flex",
@@ -68,6 +72,31 @@ const styles = {
     "flex-direction": "row",
     "justify-content": "center",
     "align-items": "center",
+  },
+  dots: {
+    position: "absolute",
+    bottom: "32px",
+    left: "0",
+    right: "0",
+    display: "flex",
+    "flex-direction": "row",
+    "justify-content": "center",
+    gap: "12px",
+    "z-index": "99",
+    "pointer-events": "none",
+  },
+  dot: {
+    width: "14px",
+    height: "14px",
+    "border-radius": "50%",
+    "background-color": "rgba(255, 255, 255, 0.65)",
+    "box-shadow": "0 2px 6px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(0, 0, 0, 0.3)",
+    transition: "background-color 0.3s, transform 0.3s",
+  },
+  dotActive: {
+    "background-color": "#5E1219",
+    transform: "scale(1.25)",
+    "box-shadow": "0 2px 8px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(0, 0, 0, 0.4)",
   },
 };
 
@@ -91,6 +120,28 @@ const Slider: React.FunctionComponent<IProps> = ({ classes, images }) => {
     images,
   };
   const { goToPreviousSlide, goToNextSlide } = useSlider(sliderProps);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+
+  const handlePrev = () => {
+    goToPreviousSlide();
+    setCurrentIndex((i) => (i - 1 + images.length) % images.length);
+  };
+  const handleNext = () => {
+    goToNextSlide();
+    setCurrentIndex((i) => (i + 1) % images.length);
+  };
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const delta = e.changedTouches[0].clientX - touchStartX.current;
+    touchStartX.current = null;
+    if (delta > 50) handlePrev();
+    else if (delta < -50) handleNext();
+  };
 
   const getLink = () => {
     console.log("slideURL current: ", slideURL.current?.textContent);
@@ -102,10 +153,15 @@ const Slider: React.FunctionComponent<IProps> = ({ classes, images }) => {
   };
 
   return (
-    <div ref={slideImage} className={classes.image}>
+    <div
+      ref={slideImage}
+      className={classes.image}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+    >
       <div className={classes.sliderContainer}>
         <div className={classes.buttonLR}>
-          <Button onClick={goToPreviousSlide}>
+          <Button onClick={handlePrev}>
             <LeftArrow />
           </Button>
         </div>
@@ -124,10 +180,18 @@ const Slider: React.FunctionComponent<IProps> = ({ classes, images }) => {
           <small ref={slideURL} className={classes.noText}></small>
         </div>
         <div className={classes.buttonLR}>
-          <Button onClick={goToNextSlide}>
+          <Button onClick={handleNext}>
             <RightArrow />
           </Button>
         </div>
+      </div>
+      <div className={classes.dots}>
+        {images.map((_: unknown, i: number) => (
+          <span
+            key={i}
+            className={`${classes.dot} ${i === currentIndex ? classes.dotActive : ""}`}
+          />
+        ))}
       </div>
     </div>
   );

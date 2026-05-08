@@ -56,6 +56,19 @@ const styles = {
       margin: "12px 0 8px 0",
     },
     "& a": { color: "#5E1219" },
+    "& table": {
+      display: "block",
+      "border-collapse": "collapse",
+      "max-width": "100%",
+      "overflow-x": "auto",
+      "-webkit-overflow-scrolling": "touch",
+      margin: "12px 0",
+    },
+    "& th, & td": {
+      border: "1px solid #3E0C0C",
+      padding: "6px 8px",
+      "text-align": "left",
+    },
   },
   summary: {
     margin: "0 0 8px 0",

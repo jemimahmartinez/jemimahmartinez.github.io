@@ -14,6 +14,9 @@ const styles = {
     display: "grid",
     "grid-template-columns": "repeat(5, 1fr)",
     "pointer-events": "none",
+    "@media (max-width: 600px)": {
+      display: "none",
+    },
   },
   slot: {
     display: "flex",

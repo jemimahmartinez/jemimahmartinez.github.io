@@ -45,8 +45,11 @@ const styles = {
       "padding-left": "24px",
     },
     "& table": {
+      display: "block",
       "border-collapse": "collapse",
-      width: "100%",
+      "max-width": "100%",
+      "overflow-x": "auto",
+      "-webkit-overflow-scrolling": "touch",
       margin: "12px 0",
     },
     "& th, & td": {

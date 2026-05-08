@@ -11,6 +11,11 @@ const styles = {
     "border-left": "50px solid transparent",
     "border-right": "50px solid transparent",
     "border-top": "25px solid #5E1219",
+    "@media (max-width: 600px)": {
+      "border-left-width": "20px",
+      "border-right-width": "20px",
+      "border-top-width": "12px",
+    },
   },
 };
 

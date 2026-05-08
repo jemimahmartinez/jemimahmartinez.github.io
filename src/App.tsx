@@ -65,16 +65,25 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
     activeSection === section ? classes.active : classes.a;
 
   useEffect(() => {
-    const onScroll = () => {
-      const ratio = window.pageYOffset / document.body.scrollHeight;
-      if (ratio < 0.2) setActiveSection("home");
-      else if (ratio < 0.4) setActiveSection("about");
-      else if (ratio < 0.6) setActiveSection("projects");
-      else if (ratio < 0.8) setActiveSection("insights");
-      else setActiveSection("contact");
+    const ids: Section[] = ["home", "about", "projects", "insights", "contact"];
+
+    const updateActive = () => {
+      const triggerLine = window.pageYOffset + window.innerHeight * 0.3;
+      let active: Section | null = null;
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= triggerLine) active = id;
+      }
+      if (active) setActiveSection(active);
     };
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+
+    updateActive();
+    window.addEventListener("scroll", updateActive, { passive: true });
+    window.addEventListener("resize", updateActive);
+    return () => {
+      window.removeEventListener("scroll", updateActive);
+      window.removeEventListener("resize", updateActive);
+    };
   }, []);
 
   return (

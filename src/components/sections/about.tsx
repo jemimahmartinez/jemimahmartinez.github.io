@@ -19,6 +19,12 @@ const styles = {
     "justify-content": "center",
     "background-color": "#000000",
     position: "relative",
+    "@media (max-width: 600px)": {
+      "& > div": {
+        "flex-direction": "column",
+        gap: "16px",
+      },
+    },
   },
   text: {
     "text-align": "start",
@@ -30,6 +36,11 @@ const styles = {
     width: "20%",
     margin: "0px 15px 0px 15px",
     "border-radius": "50px",
+    "@media (max-width: 600px)": {
+      width: "40%",
+      "max-width": "180px",
+      height: "auto",
+    },
   },
   icon: {
     color: "#ffffff !important",

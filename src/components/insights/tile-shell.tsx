@@ -9,6 +9,10 @@ const styles = {
     padding: "20px",
     "text-align": "left",
     "font-size": "0.65em",
+    "@media (max-width: 600px)": {
+      padding: "12px",
+      "font-size": "0.7em",
+    },
   },
   title: {
     margin: "0 0 12px 0",

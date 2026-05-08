@@ -16,6 +16,16 @@ const styles = {
     "align-items": "flex-end",
     "z-index": "99",
     cursor: "pointer",
+    "@media (max-width: 600px)": {
+      height: "55px !important",
+      width: "55px !important",
+      margin: "0px 8px",
+    },
+    "@media (max-width: 400px)": {
+      height: "45px !important",
+      width: "45px !important",
+      margin: "0px 6px",
+    },
   },
 };
 

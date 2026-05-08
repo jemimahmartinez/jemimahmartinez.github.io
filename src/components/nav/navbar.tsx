@@ -1,22 +1,82 @@
+import React, { useEffect, useRef, useState } from "react";
 import withStyles, { WithStylesProps } from "react-jss";
 
 const styles = {
-  navbar: {
-    "list-style-type": "none",
-    margin: "0",
-    padding: "0",
-    overflow: "hidden",
+  nav: {
     "background-color": "#000000",
     "font-size": "3vmin",
     position: "sticky",
     top: "0",
     width: "100%",
-    height: "100%",
-    display: "flex",
     "z-index": "101",
+    display: "flex",
+    "justify-content": "flex-start",
+    "@media (max-width: 600px)": {
+      "background-color": "transparent",
+      position: "fixed",
+      height: "0",
+    },
+  },
+  hamburger: {
+    display: "none",
+    "@media (max-width: 600px)": {
+      display: "flex",
+      "align-items": "center",
+      "justify-content": "center",
+      position: "fixed",
+      top: "calc(12px + env(safe-area-inset-top, 0px))",
+      left: "calc(12px + env(safe-area-inset-left, 0px))",
+      width: "44px",
+      height: "44px",
+      "background-color": "transparent",
+      border: "none",
+      color: "white",
+      "font-size": "28px",
+      "line-height": "1",
+      cursor: "pointer",
+      outline: "none",
+      "z-index": "200",
+      "text-shadow": "0 1px 4px rgba(0, 0, 0, 0.85)",
+    },
+  },
+  navbar: {
+    "list-style-type": "none",
+    margin: "0",
+    padding: "0",
+    display: "flex",
+    width: "100%",
+    "@media (max-width: 600px)": {
+      position: "fixed",
+      top: "0",
+      left: "0",
+      width: "100vw",
+      height: "100vh",
+      "flex-direction": "column",
+      "justify-content": "center",
+      "align-items": "stretch",
+      "background-color": "#000000",
+      "padding-top": "env(safe-area-inset-top, 0px)",
+      "padding-bottom": "env(safe-area-inset-bottom, 0px)",
+      "box-sizing": "border-box",
+      transform: "translateX(-100%)",
+      transition: "transform 0.3s ease",
+      "z-index": "150",
+      "& a": {
+        "font-size": "24px",
+        padding: "20px",
+      },
+    },
+  },
+  navbarOpen: {
+    "@media (max-width: 600px)": {
+      transform: "translateX(0)",
+    },
   },
   li: {
     width: "20%",
+    "@media (max-width: 600px)": {
+      width: "100%",
+    },
   },
 };
 
@@ -47,6 +107,20 @@ const NavBar: React.FunctionComponent<IProps> = ({
   setInsightsActive,
   setContactActive,
 }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onDocClick = (e: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", onDocClick);
+    return () => document.removeEventListener("mousedown", onDocClick);
+  }, [menuOpen]);
+
   const items = [
     { id: "home", label: "Home", className: navHomeClass, setActive: setHomeActive },
     { id: "about", label: "About Me", className: navAboutClass, setActive: setAboutActive },
@@ -57,19 +131,33 @@ const NavBar: React.FunctionComponent<IProps> = ({
   const setters = items.map((i) => i.setActive);
 
   return (
-    <ul className={classes.navbar}>
-      {items.map(({ id, label, className, setActive }) => (
-        <li key={id} className={classes.li}>
-          <a
-            href={`#${id}`}
-            className={className}
-            onClick={() => setters.forEach((s) => s(s === setActive))}
-          >
-            {label}
-          </a>
-        </li>
-      ))}
-    </ul>
+    <nav ref={navRef} className={classes.nav}>
+      <button
+        type="button"
+        className={classes.hamburger}
+        onClick={() => setMenuOpen((v) => !v)}
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
+        aria-expanded={menuOpen}
+      >
+        {menuOpen ? "✕" : "☰"}
+      </button>
+      <ul className={`${classes.navbar} ${menuOpen ? classes.navbarOpen : ""}`}>
+        {items.map(({ id, label, className, setActive }) => (
+          <li key={id} className={classes.li}>
+            <a
+              href={`#${id}`}
+              className={className}
+              onClick={() => {
+                setters.forEach((s) => s(s === setActive));
+                setMenuOpen(false);
+              }}
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 };
 
