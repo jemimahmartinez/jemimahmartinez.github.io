@@ -2,7 +2,6 @@ import withStyles, { WithStylesProps } from "react-jss";
 
 import Slider from "../slideshow/slider";
 import Slides from "../slideshow/slides";
-import NavArrow from "../nav/navigated-arrow";
 
 const styles = {
   Projects: {
@@ -23,20 +22,13 @@ const styles = {
 
 interface IProps extends WithStylesProps<typeof styles> {
   classes: any;
-  projectsActivate: boolean;
 }
 
-const Projects: React.FunctionComponent<IProps> = ({
-  classes,
-  projectsActivate,
-}) => {
+const Projects: React.FunctionComponent<IProps> = ({ classes }) => {
   return (
-    <>
-      <NavArrow section="#projects" active={projectsActivate} />
-      <div id="projects" className={classes.Projects}>
-        <Slider images={Slides} />
-      </div>
-    </>
+    <div id="projects" className={classes.Projects}>
+      <Slider images={Slides} />
+    </div>
   );
 };
 

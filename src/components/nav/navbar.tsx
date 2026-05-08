@@ -6,7 +6,7 @@ const styles = {
     margin: "0",
     padding: "0",
     overflow: "hidden",
-    "background-color": "#000000", // "#1A1A1D"
+    "background-color": "#000000",
     "font-size": "3vmin",
     position: "sticky",
     top: "0",
@@ -47,86 +47,29 @@ const NavBar: React.FunctionComponent<IProps> = ({
   setInsightsActive,
   setContactActive,
 }) => {
+  const items = [
+    { id: "home", label: "Home", className: navHomeClass, setActive: setHomeActive },
+    { id: "about", label: "About Me", className: navAboutClass, setActive: setAboutActive },
+    { id: "projects", label: "Projects", className: navProjectsClass, setActive: setProjectsActive },
+    { id: "insights", label: "Insights", className: navInsightsClass, setActive: setInsightsActive },
+    { id: "contact", label: "Contact", className: navContactClass, setActive: setContactActive },
+  ];
+  const setters = items.map((i) => i.setActive);
+
   return (
-    <>
-      <ul className={classes.navbar}>
-        <li className={classes.li}>
+    <ul className={classes.navbar}>
+      {items.map(({ id, label, className, setActive }) => (
+        <li key={id} className={classes.li}>
           <a
-            href="#home"
-            className={navHomeClass}
-            onClick={() => {
-              setHomeActive(true);
-              setAboutActive(false);
-              setProjectsActive(false);
-              setInsightsActive(false);
-              setContactActive(false);
-            }}
+            href={`#${id}`}
+            className={className}
+            onClick={() => setters.forEach((s) => s(s === setActive))}
           >
-            Home
+            {label}
           </a>
         </li>
-        <li className={classes.li}>
-          <a
-            href="#about"
-            className={navAboutClass}
-            onClick={() => {
-              setHomeActive(false);
-              setAboutActive(true);
-              setProjectsActive(false);
-              setInsightsActive(false);
-              setContactActive(false);
-            }}
-          >
-            About Me
-          </a>
-        </li>
-        <li className={classes.li}>
-          <a
-            href="#projects"
-            className={navProjectsClass}
-            onClick={() => {
-              setHomeActive(false);
-              setAboutActive(false);
-              setProjectsActive(true);
-              setInsightsActive(false);
-              setContactActive(false);
-            }}
-          >
-            Projects
-          </a>
-        </li>
-        <li className={classes.li}>
-          <a
-            href="#insights"
-            className={navInsightsClass}
-            onClick={() => {
-              setHomeActive(false);
-              setAboutActive(false);
-              setProjectsActive(false);
-              setInsightsActive(true);
-              setContactActive(false);
-            }}
-          >
-            Insights
-          </a>
-        </li>
-        <li className={classes.li}>
-          <a
-            href="#contact"
-            className={navContactClass}
-            onClick={() => {
-              setHomeActive(false);
-              setAboutActive(false);
-              setProjectsActive(false);
-              setInsightsActive(false);
-              setContactActive(true);
-            }}
-          >
-            Contact
-          </a>
-        </li>
-      </ul>
-    </>
+      ))}
+    </ul>
   );
 };
 

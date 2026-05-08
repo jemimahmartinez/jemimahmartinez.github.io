@@ -1,114 +1,44 @@
 import withStyles, { WithStylesProps } from "react-jss";
 
-import { Section } from "./nav-button";
 import NavTriangle from "./nav-triangle";
+
+type Section = "home" | "about" | "projects" | "insights" | "contact";
 
 const styles = {
   overallContainer: {
+    position: "fixed",
+    top: "6%",
+    left: "0",
     width: "100%",
-    display: "flex",
-    "flex-direction": "row",
-    "justify-content": "flex-end",
-    position: "sticky",
     "z-index": "99",
-    top: "6%", // 7.50%
-    // transition: 'height 5s ease',
+    display: "grid",
+    "grid-template-columns": "repeat(5, 1fr)",
+    "pointer-events": "none",
   },
-  containerAbout: {
-    width: "75%",
-    height: "100%",
+  slot: {
     display: "flex",
-    "flex-direction": "row",
-    "justify-content": "flex-start",
-  },
-  containerProjects: {
-    width: "75%",
-    height: "100%",
-    display: "flex",
-    "flex-direction": "row",
-    "justify-content": "space-evenly",
-  },
-  containerInsights: {
-    width: "60%",
-    height: "100%",
-    display: "flex",
-    "flex-direction": "row",
-    "justify-content": "flex-end",
-  },
-  containerContact: {
-    width: "75%",
-    height: "100%",
-    display: "flex",
-    "flex-direction": "row",
-    "justify-content": "flex-end",
-  },
-  noContainer: {
-    display: "none",
+    "justify-content": "center",
   },
 };
 
+const slots: Section[] = ["home", "about", "projects", "insights", "contact"];
+
 interface IProps extends WithStylesProps<typeof styles> {
   classes: any;
-  section: Section;
-  active: boolean;
+  activeSection: Section | null;
 }
 
-const NavArrow: React.FunctionComponent<IProps> = ({
-  classes,
-  section,
-  active,
-}) => {
-  let containerAboutArrow,
-    containerProjectsArrow,
-    containerInsightsArrow,
-    containerContactArrow;
-  switch (section) {
-    case "#about":
-      active
-        ? (containerAboutArrow = classes.containerAbout)
-        : (containerAboutArrow = classes.noContainer);
-      return (
-        <div className={classes.overallContainer}>
-          <div className={containerAboutArrow}>
-            <NavTriangle />
-          </div>
+const NavArrow: React.FunctionComponent<IProps> = ({ classes, activeSection }) => {
+  if (!activeSection || activeSection === "home") return null;
+  return (
+    <div className={classes.overallContainer}>
+      {slots.map((s) => (
+        <div key={s} className={classes.slot}>
+          {s === activeSection && <NavTriangle />}
         </div>
-      );
-    case "#projects":
-      active
-        ? (containerProjectsArrow = classes.containerProjects)
-        : (containerProjectsArrow = classes.noContainer);
-      return (
-        <div className={classes.overallContainer}>
-          <div className={containerProjectsArrow}>
-            <NavTriangle />
-          </div>
-        </div>
-      );
-    case "#insights":
-      active
-        ? (containerInsightsArrow = classes.containerInsights)
-        : (containerInsightsArrow = classes.noContainer);
-      return (
-        <div className={classes.overallContainer}>
-          <div className={containerInsightsArrow}>
-            <NavTriangle />
-          </div>
-        </div>
-      );
-    default:
-      // '#contact'
-      active
-        ? (containerContactArrow = classes.containerContact)
-        : (containerContactArrow = classes.noContainer);
-      return (
-        <div className={classes.overallContainer}>
-          <div className={containerContactArrow}>
-            <NavTriangle />
-          </div>
-        </div>
-      );
-  }
+      ))}
+    </div>
+  );
 };
 
 export default withStyles(styles)(NavArrow);

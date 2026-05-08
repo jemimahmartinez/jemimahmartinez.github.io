@@ -3,12 +3,7 @@ import withStyles, { WithStylesProps } from "react-jss";
 const styles = {
   triangleContainer: {
     display: "flex",
-    "flex-direction": "row",
-    margin: "none",
     "justify-content": "center",
-    width: "33.33%",
-    // height: '100%',
-    // transition: 'height 1s ease',
   },
   triangleDown: {
     width: "0",

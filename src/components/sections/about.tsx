@@ -5,7 +5,6 @@ import User from "../icons/user";
 import PinPoint from "../icons/pin-point";
 import RowFlexContainer from "../layout/row-flex";
 import ColumnFlexContainer from "../layout/column-flex";
-import NavArrow from "../nav/navigated-arrow";
 
 const styles = {
   About: {
@@ -45,13 +44,11 @@ const styles = {
 
 interface IProps extends WithStylesProps<typeof styles> {
   classes: any;
-  aboutActivate: boolean;
 }
 
-const About: React.ComponentType<IProps> = ({ classes, aboutActivate }) => {
+const About: React.ComponentType<IProps> = ({ classes }) => {
   return (
     <>
-      <NavArrow section="#about" active={aboutActivate} />
       <div id="about" className={classes.About}>
         <h1>About Me</h1>
         <RowFlexContainer center={true}>

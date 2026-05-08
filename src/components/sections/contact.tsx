@@ -5,7 +5,6 @@ import GitHub from "../icons/github";
 import LinkedIn from "../icons/linkedin";
 import Email from "../icons/email";
 import RowFlexContainer from "../layout/row-flex";
-import NavArrow from "../nav/navigated-arrow";
 
 const styles = {
   Contact: {
@@ -26,16 +25,11 @@ const styles = {
 
 interface IProps extends WithStylesProps<typeof styles> {
   classes: any;
-  contactActivate: boolean;
 }
 
-const Contact: React.FunctionComponent<IProps> = ({
-  classes,
-  contactActivate,
-}) => {
+const Contact: React.FunctionComponent<IProps> = ({ classes }) => {
   return (
     <>
-      <NavArrow section="#contact" active={contactActivate} />
       <div id="contact" className={classes.Contact}>
         <h1>Contact me here!</h1>
         <RowFlexContainer center={true}>

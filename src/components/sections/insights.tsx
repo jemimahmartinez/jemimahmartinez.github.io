@@ -1,6 +1,5 @@
 import withStyles, { WithStylesProps } from "react-jss";
 
-import NavArrow from "../nav/navigated-arrow";
 import PasswordGate from "../insights/password-gate";
 import { useUnlock } from "../insights/use-unlock";
 import LatestReport from "../insights/latest-report";
@@ -40,18 +39,13 @@ const styles = {
 
 interface IProps extends WithStylesProps<typeof styles> {
   classes: any;
-  insightsActivate: boolean;
 }
 
-const Insights: React.FunctionComponent<IProps> = ({
-  classes,
-  insightsActivate,
-}) => {
+const Insights: React.FunctionComponent<IProps> = ({ classes }) => {
   const { unlocked, unlock } = useUnlock();
 
   return (
     <>
-      <NavArrow section="#insights" active={insightsActivate} />
       <div id="insights" className={classes.Insights}>
         <h1 className={classes.heading}>Insights</h1>
         {!unlocked ? (
