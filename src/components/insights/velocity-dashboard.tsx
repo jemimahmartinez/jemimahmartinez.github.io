@@ -50,7 +50,7 @@ const styles = {
   },
   bar: {
     width: "100%",
-    "background-color": "#C3073F",
+    "background-color": "#5E1219",
     "border-radius": "2px 2px 0 0",
     "min-height": "2px",
   },

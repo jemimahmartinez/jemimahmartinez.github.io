@@ -7,7 +7,7 @@ import { LadderGap as LadderGapData, LadderGapStatus } from "./types";
 const STATUS_COLOR: Record<LadderGapStatus, string> = {
   met: "#4caf50",
   developing: "#ffb300",
-  gap: "#C3073F",
+  gap: "#5E1219",
 };
 
 const styles = {

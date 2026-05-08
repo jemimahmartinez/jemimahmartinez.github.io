@@ -21,7 +21,7 @@ const styles = {
       margin: "20px 0 10px 0",
     },
     "& a": {
-      color: "#C3073F",
+      color: "#5E1219",
     },
     "& code": {
       "background-color": "#000000",
@@ -36,7 +36,7 @@ const styles = {
       overflow: "auto",
     },
     "& blockquote": {
-      "border-left": "3px solid #C3073F",
+      "border-left": "3px solid #5E1219",
       "padding-left": "12px",
       margin: "12px 0",
       color: "#bbb",
@@ -50,7 +50,7 @@ const styles = {
       margin: "12px 0",
     },
     "& th, & td": {
-      border: "1px solid #4E4E50",
+      border: "1px solid #3E0C0C",
       padding: "8px",
       "text-align": "left",
     },

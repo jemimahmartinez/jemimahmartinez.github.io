@@ -4,7 +4,7 @@ import withStyles, { WithStylesProps } from "react-jss";
 const styles = {
   tile: {
     "background-color": "#1A1A1D",
-    border: "1px solid #4E4E50",
+    border: "1px solid #3E0C0C",
     "border-radius": "8px",
     padding: "20px",
     "text-align": "left",
@@ -14,7 +14,7 @@ const styles = {
     margin: "0 0 12px 0",
     "font-size": "1.1em",
     color: "white",
-    "border-bottom": "2px solid #C3073F",
+    "border-bottom": "2px solid #5E1219",
     "padding-bottom": "6px",
   },
   body: {

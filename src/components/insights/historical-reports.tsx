@@ -19,7 +19,7 @@ const styles = {
     gap: "8px",
   },
   item: {
-    border: "1px solid #4E4E50",
+    border: "1px solid #3E0C0C",
     "border-radius": "4px",
     overflow: "hidden",
   },
@@ -49,13 +49,13 @@ const styles = {
   body: {
     padding: "12px 14px",
     "background-color": "#000000",
-    "border-top": "1px solid #4E4E50",
+    "border-top": "1px solid #3E0C0C",
     color: "#e0e0e0",
     "& h1, & h2, & h3, & h4": {
       color: "white",
       margin: "12px 0 8px 0",
     },
-    "& a": { color: "#C3073F" },
+    "& a": { color: "#5E1219" },
   },
   summary: {
     margin: "0 0 8px 0",

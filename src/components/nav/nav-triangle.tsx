@@ -10,7 +10,7 @@ const styles = {
     height: "0",
     "border-left": "50px solid transparent",
     "border-right": "50px solid transparent",
-    "border-top": "25px solid #C3073F",
+    "border-top": "25px solid #5E1219",
   },
 };
 

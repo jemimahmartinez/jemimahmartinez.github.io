@@ -49,7 +49,7 @@ const styles = {
     margin: "0px 60px 0px 20px",
     transition: "color 0.75s",
     "&:hover": {
-      color: "#C3073F !important",
+      color: "#5E1219 !important",
     },
     "z-index": "99",
     cursor: "pointer",

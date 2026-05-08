@@ -30,7 +30,7 @@ const styles = {
     padding: "14px 16px",
     "text-decoration": "none",
     "&:hover": {
-      "background-color": "#4E4E50 ",
+      "background-color": "#3E0C0C ",
     },
   },
   active: {
@@ -39,7 +39,7 @@ const styles = {
     "text-align": "center",
     padding: "14px 16px",
     "text-decoration": "none",
-    "background-color": "#C3073F",
+    "background-color": "#5E1219",
   },
 };
 

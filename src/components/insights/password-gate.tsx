@@ -22,7 +22,7 @@ const styles = {
     "max-width": "420px",
     width: "80%",
     "background-color": "#1A1A1D",
-    border: "1px solid #4E4E50",
+    border: "1px solid #3E0C0C",
     "border-radius": "8px",
   },
   heading: {
@@ -48,18 +48,18 @@ const styles = {
     "font-family": "Montserrat, sans-serif",
     "background-color": "#000000",
     color: "white",
-    border: "1px solid #4E4E50",
+    border: "1px solid #3E0C0C",
     "border-radius": "4px",
     outline: "none",
     "&:focus": {
-      "border-color": "#C3073F",
+      "border-color": "#5E1219",
     },
   },
   button: {
     padding: "10px 16px",
     "font-size": "0.6em",
     "font-family": "Montserrat, sans-serif",
-    "background-color": "#C3073F",
+    "background-color": "#5E1219",
     color: "white",
     border: "none",
     "border-radius": "4px",
@@ -72,7 +72,7 @@ const styles = {
   error: {
     margin: "0",
     "font-size": "0.55em",
-    color: "#C3073F",
+    color: "#5E1219",
   },
 };
 
