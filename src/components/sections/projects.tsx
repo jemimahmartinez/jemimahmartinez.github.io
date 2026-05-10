@@ -10,7 +10,7 @@ const styles = {
     "font-size": "calc(10px + 2vmin)",
     "text-align": "center",
     "min-height": "100vh",
-    "min-width": "100vw",
+    width: "100%",
     overflow: "hidden",
     "align-items": "center",
     "flex-direction": "column",

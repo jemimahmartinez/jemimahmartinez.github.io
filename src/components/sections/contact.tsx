@@ -13,7 +13,7 @@ const styles = {
     "font-size": "calc(10px + 2vmin)",
     "text-align": "center",
     "min-height": "100vh",
-    "min-width": "100vw",
+    width: "100%",
     overflow: "hidden",
     "align-items": "center",
     "flex-direction": "column",
@@ -29,32 +29,30 @@ interface IProps extends WithStylesProps<typeof styles> {
 
 const Contact: React.FunctionComponent<IProps> = ({ classes }) => {
   return (
-    <>
-      <div id="contact" className={classes.Contact}>
-        <h1>Contact me here!</h1>
-        <RowFlexContainer center={true}>
-          <Button
-            onClick={() => window.open("https://github.com/jemimahmartinez")}
-          >
-            <GitHub />
-          </Button>
-          <Button
-            onClick={() =>
-              window.open(
-                "https://www.linkedin.com/in/jemimah-martinez-a0924a18b/"
-              )
-            }
-          >
-            <LinkedIn />
-          </Button>
-          <Button
-            onClick={() => window.open("mailto:martinezjemimah@gmail.com")}
-          >
-            <Email />
-          </Button>
-        </RowFlexContainer>
-      </div>
-    </>
+    <div id="contact" className={classes.Contact}>
+      <h1>Contact me here!</h1>
+      <RowFlexContainer center={true}>
+        <Button
+          onClick={() => window.open("https://github.com/jemimahmartinez")}
+        >
+          <GitHub />
+        </Button>
+        <Button
+          onClick={() =>
+            window.open(
+              "https://www.linkedin.com/in/jemimah-martinez-a0924a18b/"
+            )
+          }
+        >
+          <LinkedIn />
+        </Button>
+        <Button
+          onClick={() => window.open("mailto:martinezjemimah@gmail.com")}
+        >
+          <Email />
+        </Button>
+      </RowFlexContainer>
+    </div>
   );
 };
 

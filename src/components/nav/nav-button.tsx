@@ -57,11 +57,20 @@ const NavButton: React.FunctionComponent<IProps> = ({
   setProjectsActive,
   setContactActive,
 }) => {
+  const scrollToSection = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const id = section.replace("#", "");
+    document.getElementById(id)?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   if (type === "up") {
     return (
       <div className={classes.upButton}>
-        <Button onClick={() => console.log("Up")}>
-          <a href={section} style={{ textDecoration: "none" }}>
+        <Button onClick={() => undefined}>
+          <a href={section} style={{ textDecoration: "none" }} onClick={scrollToSection}>
             <UpArrow />
           </a>
         </Button>
@@ -70,11 +79,12 @@ const NavButton: React.FunctionComponent<IProps> = ({
   }
   return (
     <div className={classes.downButton}>
-      <Button onClick={() => console.log("Down")}>
+      <Button onClick={() => undefined}>
         <a
           href={section}
           className={classes.button}
-          onClick={() => {
+          onClick={(e) => {
+            scrollToSection(e);
             setHomeActive(false);
             setAboutActive(true);
             setProjectsActive(false);

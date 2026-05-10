@@ -2,10 +2,24 @@
   text-align: center;
 }
 
+html,
+body {
+  overflow-x: clip;
+}
+
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
 }
+
+#home,
+#about,
+#projects,
+#insights,
+#contact {
+  scroll-snap-align: start;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }

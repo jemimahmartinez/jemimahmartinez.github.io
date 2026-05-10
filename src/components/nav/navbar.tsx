@@ -52,11 +52,9 @@ const styles = {
       width: "100vw",
       height: "100vh",
       "flex-direction": "column",
-      "justify-content": "center",
+      "justify-content": "space-evenly",
       "align-items": "stretch",
       "background-color": "#000000",
-      "padding-top": "env(safe-area-inset-top, 0px)",
-      "padding-bottom": "env(safe-area-inset-bottom, 0px)",
       "box-sizing": "border-box",
       transform: "translateX(-100%)",
       transition: "transform 0.3s ease",
@@ -139,7 +137,7 @@ const NavBar: React.FunctionComponent<IProps> = ({
         aria-label={menuOpen ? "Close menu" : "Open menu"}
         aria-expanded={menuOpen}
       >
-        {menuOpen ? "✕" : "☰"}
+        {menuOpen ? "×" : "☰"}
       </button>
       <ul className={`${classes.navbar} ${menuOpen ? classes.navbarOpen : ""}`}>
         {items.map(({ id, label, className, setActive }) => (
@@ -147,7 +145,12 @@ const NavBar: React.FunctionComponent<IProps> = ({
             <a
               href={`#${id}`}
               className={className}
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById(id)?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
                 setters.forEach((s) => s(s === setActive));
                 setMenuOpen(false);
               }}

@@ -10,7 +10,7 @@ const styles = {
     display: "flex",
     "text-align": "center",
     "min-height": "100vh",
-    "min-width": "100vw",
+    width: "100%",
     overflow: "hidden",
     "align-items": "center",
     "flex-direction": "column",
@@ -37,20 +37,18 @@ const Home: React.FunctionComponent<IProps> = ({
   setContactActive,
 }) => {
   return (
-    <>
-      <div id="home" className={classes.Home}>
-        <h4>Hi! My name is</h4>
-        <h1>Jemimah Martinez</h1>
-        <NavButton
-          type="down"
-          section="#about"
-          setHomeActive={setHomeActive}
-          setAboutActive={setAboutActive}
-          setProjectsActive={setProjectsActive}
-          setContactActive={setContactActive}
-        />
-      </div>
-    </>
+    <div id="home" className={classes.Home}>
+      <h4>Hi! My name is</h4>
+      <h1>Jemimah Martinez</h1>
+      <NavButton
+        type="down"
+        section="#about"
+        setHomeActive={setHomeActive}
+        setAboutActive={setAboutActive}
+        setProjectsActive={setProjectsActive}
+        setContactActive={setContactActive}
+      />
+    </div>
   );
 };
 

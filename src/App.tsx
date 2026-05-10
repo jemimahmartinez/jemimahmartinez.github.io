@@ -65,6 +65,20 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
     activeSection === section ? classes.active : classes.a;
 
   useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    if (window.location.hash) {
+      window.history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search
+      );
+    }
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const ids: Section[] = ["home", "about", "projects", "insights", "contact"];
 
     const updateActive = () => {

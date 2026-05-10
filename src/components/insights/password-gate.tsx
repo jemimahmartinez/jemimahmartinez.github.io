@@ -24,6 +24,10 @@ const styles = {
     "background-color": "#1A1A1D",
     border: "1px solid #3E0C0C",
     "border-radius": "8px",
+    "@media (max-width: 600px)": {
+      "max-width": "340px",
+      padding: "20px",
+    },
   },
   subheading: {
     margin: "0",
@@ -39,6 +43,7 @@ const styles = {
   },
   input: {
     flex: "1",
+    "min-width": "0",
     padding: "10px 12px",
     "font-size": "0.6em",
     "font-family": "Montserrat, sans-serif",
@@ -49,6 +54,10 @@ const styles = {
     outline: "none",
     "&:focus": {
       "border-color": "#5E1219",
+    },
+    "@media (max-width: 600px)": {
+      padding: "16px 14px",
+      "font-size": "16px",
     },
   },
   button: {
@@ -63,6 +72,10 @@ const styles = {
     transition: "background-color 0.3s",
     "&:hover": {
       "background-color": "#950740",
+    },
+    "@media (max-width: 600px)": {
+      padding: "16px 18px",
+      "font-size": "14px",
     },
   },
   error: {
@@ -109,7 +122,6 @@ const PasswordGate: React.FunctionComponent<IProps> = ({
             setValue(e.target.value);
             if (error) setError(false);
           }}
-          autoFocus
         />
         <button type="submit" className={classes.button}>
           Unlock
