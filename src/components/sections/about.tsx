@@ -1,10 +1,6 @@
 import withStyles, { WithStylesProps } from "react-jss";
 
-import Image from "../pics/me.png";
-import User from "../icons/user";
-import PinPoint from "../icons/pin-point";
-import RowFlexContainer from "../layout/row-flex";
-import ColumnFlexContainer from "../layout/column-flex";
+import Timeline from "../timeline/timeline";
 import { useOracle } from "../../useOracle";
 
 const styles = {
@@ -14,43 +10,19 @@ const styles = {
     "font-size": "calc(10px + 2vmin)",
     "text-align": "center",
     "min-height": "100vh",
+    height: "100vh",
+    "max-height": "100vh",
     width: "100%",
-    "align-items": "center",
+    "align-items": "stretch",
     "flex-direction": "column",
     "justify-content": "center",
     "background-color": "#000000",
     position: "relative",
-    "@media (max-width: 600px)": {
-      "& > div": {
-        "flex-direction": "column",
-        gap: "16px",
-      },
-    },
+    overflow: "hidden",
+    "box-sizing": "border-box",
   },
-  text: {
-    "text-align": "start",
-    width: "100%",
-    height: "100%",
-  },
-  image: {
-    height: "20%",
-    width: "20%",
-    margin: "0px 15px 0px 15px",
-    "border-radius": "50px",
-    "@media (max-width: 600px)": {
-      width: "40%",
-      "max-width": "180px",
-      height: "auto",
-    },
-  },
-  icon: {
-    color: "#ffffff !important",
-    height: "50px !important",
-    width: "50px !important",
-    "background-color": "transparent",
-    border: "none",
-    outline: "none",
-    margin: "0px 15px 0px 15px",
+  heading: {
+    margin: "0",
   },
 };
 
@@ -62,20 +34,7 @@ const About: React.ComponentType<IProps> = ({ classes }) => {
   const oracle = useOracle();
   return (
     <div id="about" className={classes.About}>
-      <h1>{oracle.about.heading}</h1>
-      <RowFlexContainer center={true}>
-        <img src={Image} alt="" className={classes.image} />
-        <ColumnFlexContainer>
-          <RowFlexContainer center={false}>
-            <User className={classes.icon} />
-            <p className={classes.text}>{oracle.about.bio}</p>
-          </RowFlexContainer>
-          <RowFlexContainer center={false}>
-            <PinPoint className={classes.icon} />
-            <p className={classes.text}>{oracle.about.location}</p>
-          </RowFlexContainer>
-        </ColumnFlexContainer>
-      </RowFlexContainer>
+      <Timeline events={oracle.about.timeline as any} />
     </div>
   );
 };

@@ -13,9 +13,134 @@
     "name": "Jemimah Martinez"
   },
   "about": {
-    "heading": "About Me",
-    "bio": "Final year Computer Systems Engineering student at the University of Auckland",
-    "location": "Auckland, New Zealand"
+    "timeline": [
+      {
+        "year": "2000",
+        "endYear": null,
+        "branch": "above",
+        "level": 1,
+        "title": "Hello, world!",
+        "description": "Life began.",
+        "image": null
+      },
+      {
+        "year": "2011",
+        "endYear": "2017",
+        "branch": "above",
+        "level": 1,
+        "title": "St Mary's College Student",
+        "description": "Secondary education, NCEA L3 graduate.",
+        "image": null
+      },
+      {
+        "year": "Mar 2018",
+        "endYear": "Nov 2021",
+        "branch": "above",
+        "level": 3,
+        "title": "Univeristy of Auckland Student",
+        "description": "Tertiary education, studying Computer Systems Engineering.",
+        "image": null
+      },
+      {
+        "year": "Nov 2019",
+        "endYear": "Jul 2020",
+        "branch": "above",
+        "level": 1,
+        "title": "Own My Data Intern",
+        "description": "First software development internship.",
+        "image": "ownMyData.webp"
+      },
+      {
+        "year": "Nov 2020",
+        "endYear": "Feb 2021",
+        "branch": "above",
+        "level": 1,
+        "title": "Node.js Software Development Engineer Intern at Pushpay",
+        "description": "Second software development internship.",
+        "image": "pushpayInternship.jpg"
+      },
+      {
+        "year": "Jul 2018",
+        "endYear": "Jan 2022",
+        "branch": "below",
+        "level": 1,
+        "title": "Engineering Revue",
+        "description": "Dancer to Choreographer to Dance Director and TRON tech lead.",
+        "image": "tronBTS.jpg"
+      },
+      {
+        "year": "May 2022",
+        "endYear": null,
+        "branch": "below",
+        "level": 1,
+        "title": "BEng (Hons) in Computer Systems Engineering",
+        "description": "Officially graduated with First Class Honours in Computer Systems Engineering.",
+        "image": "grad.jpg"
+      },
+      {
+        "year": "Dec 2021",
+        "endYear": "Present",
+        "branch": "above",
+        "level": 3,
+        "title": "Pushpay",
+        "description": null,
+        "image": null
+      },
+      {
+        "year": "Dec 2021",
+        "endYear": "Oct 2022",
+        "branch": "above",
+        "level": 2,
+        "title": "Software Development Engineer I",
+        "description": "First Grad job.",
+        "image": null
+      },
+      {
+        "year": "Oct 2022",
+        "endYear": "Oct 2024",
+        "branch": "above",
+        "level": 2,
+        "title": "Software Development Engineer II",
+        "description": "Job promotion.",
+        "image": null
+      },
+      {
+        "year": "Apr 2023",
+        "endYear": "May 2024",
+        "branch": "above",
+        "level": 1,
+        "title": "Race & Culture Communications Lead",
+        "description": "Employee Resource Group Committee Role.",
+        "image": null
+      },
+      {
+        "year": "May 2024",
+        "endYear": "Present",
+        "branch": "above",
+        "level": 1,
+        "title": "Race & Culture Co-Lead",
+        "description": "Employee Resource Group Leadership Role.",
+        "image": null
+      },
+      {
+        "year": "Oct 2024",
+        "endYear": "Present",
+        "branch": "above",
+        "level": 2,
+        "title": "Software Development Engineer III",
+        "description": "Job promotion.",
+        "image": null
+      },
+      {
+        "year": "Apr 2025",
+        "endYear": null,
+        "branch": "below",
+        "level": 1,
+        "title": "Generosity Award Winner",
+        "description": "Core Value Award winner for Generosity at Pushpay's FY25 Company Kickoff.",
+        "image": "generosityCoreValue.png"
+      }
+    ]
   },
   "contact": {
     "heading": "Contact me here!",
