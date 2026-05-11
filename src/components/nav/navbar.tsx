@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import withStyles, { WithStylesProps } from "react-jss";
 
+import { useOracle } from "../../useOracle";
+
 const styles = {
   nav: {
     "background-color": "#000000",
@@ -107,6 +109,7 @@ const NavBar: React.FunctionComponent<IProps> = ({
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navRef = useRef<HTMLElement | null>(null);
+  const oracle = useOracle();
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -120,11 +123,11 @@ const NavBar: React.FunctionComponent<IProps> = ({
   }, [menuOpen]);
 
   const items = [
-    { id: "home", label: "Home", className: navHomeClass, setActive: setHomeActive },
-    { id: "about", label: "About Me", className: navAboutClass, setActive: setAboutActive },
-    { id: "projects", label: "Projects", className: navProjectsClass, setActive: setProjectsActive },
-    { id: "insights", label: "Insights", className: navInsightsClass, setActive: setInsightsActive },
-    { id: "contact", label: "Contact", className: navContactClass, setActive: setContactActive },
+    { id: "home", label: oracle.nav.home, className: navHomeClass, setActive: setHomeActive },
+    { id: "about", label: oracle.nav.about, className: navAboutClass, setActive: setAboutActive },
+    { id: "projects", label: oracle.nav.projects, className: navProjectsClass, setActive: setProjectsActive },
+    { id: "insights", label: oracle.nav.insights, className: navInsightsClass, setActive: setInsightsActive },
+    { id: "contact", label: oracle.nav.contact, className: navContactClass, setActive: setContactActive },
   ];
   const setters = items.map((i) => i.setActive);
 
@@ -134,7 +137,7 @@ const NavBar: React.FunctionComponent<IProps> = ({
         type="button"
         className={classes.hamburger}
         onClick={() => setMenuOpen((v) => !v)}
-        aria-label={menuOpen ? "Close menu" : "Open menu"}
+        aria-label={menuOpen ? oracle.nav.closeMenu : oracle.nav.openMenu}
         aria-expanded={menuOpen}
       >
         {menuOpen ? "×" : "☰"}

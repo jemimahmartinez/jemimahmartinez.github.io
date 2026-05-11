@@ -5,6 +5,7 @@ import GitHub from "../icons/github";
 import LinkedIn from "../icons/linkedin";
 import Email from "../icons/email";
 import RowFlexContainer from "../layout/row-flex";
+import { useOracle } from "../../useOracle";
 
 const styles = {
   Contact: {
@@ -28,27 +29,18 @@ interface IProps extends WithStylesProps<typeof styles> {
 }
 
 const Contact: React.FunctionComponent<IProps> = ({ classes }) => {
+  const oracle = useOracle();
   return (
     <div id="contact" className={classes.Contact}>
-      <h1>Contact me here!</h1>
+      <h1>{oracle.contact.heading}</h1>
       <RowFlexContainer center={true}>
-        <Button
-          onClick={() => window.open("https://github.com/jemimahmartinez")}
-        >
+        <Button onClick={() => window.open(oracle.contact.githubUrl)}>
           <GitHub />
         </Button>
-        <Button
-          onClick={() =>
-            window.open(
-              "https://www.linkedin.com/in/jemimah-martinez-a0924a18b/"
-            )
-          }
-        >
+        <Button onClick={() => window.open(oracle.contact.linkedinUrl)}>
           <LinkedIn />
         </Button>
-        <Button
-          onClick={() => window.open("mailto:martinezjemimah@gmail.com")}
-        >
+        <Button onClick={() => window.open(oracle.contact.emailHref)}>
           <Email />
         </Button>
       </RowFlexContainer>

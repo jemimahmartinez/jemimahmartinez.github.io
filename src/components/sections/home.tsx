@@ -3,6 +3,7 @@ import withStyles, { WithStylesProps } from "react-jss";
 
 import Background from "../pics/dance.png";
 import NavButton from "../nav/nav-button";
+import { useOracle } from "../../useOracle";
 
 const styles = {
   Home: {
@@ -36,10 +37,11 @@ const Home: React.FunctionComponent<IProps> = ({
   setProjectsActive,
   setContactActive,
 }) => {
+  const oracle = useOracle();
   return (
     <div id="home" className={classes.Home}>
-      <h4>Hi! My name is</h4>
-      <h1>Jemimah Martinez</h1>
+      <h4>{oracle.home.greeting}</h4>
+      <h1>{oracle.home.name}</h1>
       <NavButton
         type="down"
         section="#about"

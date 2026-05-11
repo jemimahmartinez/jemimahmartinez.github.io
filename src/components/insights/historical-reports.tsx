@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 
 import TileShell from "./tile-shell";
 import { ReportIndexEntry } from "./types";
+import { useOracle } from "../../useOracle";
 
 const styles = {
   empty: {
@@ -87,6 +88,7 @@ const HistoricalReports: React.FunctionComponent<IProps> = ({ classes }) => {
   const [error, setError] = useState<string | null>(null);
   const [openId, setOpenId] = useState<string | null>(null);
   const [bodies, setBodies] = useState<Record<string, string>>({});
+  const oracle = useOracle();
 
   useEffect(() => {
     fetch(`${process.env.PUBLIC_URL}/data/reports/index.json`)
@@ -110,10 +112,12 @@ const HistoricalReports: React.FunctionComponent<IProps> = ({ classes }) => {
   };
 
   return (
-    <TileShell title="All quarterly reports">
-      {error && <p className={classes.empty}>Failed to load: {error}</p>}
+    <TileShell title={oracle.insights.tiles.allReports}>
+      {error && (
+        <p className={classes.empty}>{oracle.insights.failedToLoad(error)}</p>
+      )}
       {!error && (!entries || entries.length === 0) && (
-        <p className={classes.empty}>No reports yet.</p>
+        <p className={classes.empty}>{oracle.insights.empty.historicalReports}</p>
       )}
       {entries && entries.length > 0 && (
         <ul className={classes.list}>
@@ -137,7 +141,7 @@ const HistoricalReports: React.FunctionComponent<IProps> = ({ classes }) => {
                   {bodies[e.id] ? (
                     <ReactMarkdown>{bodies[e.id]}</ReactMarkdown>
                   ) : (
-                    <p className={classes.empty}>Loading…</p>
+                    <p className={classes.empty}>{oracle.insights.empty.loading}</p>
                   )}
                 </div>
               )}

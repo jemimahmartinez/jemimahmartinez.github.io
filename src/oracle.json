@@ -1,0 +1,86 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Me",
+    "projects": "Uni Projects",
+    "insights": "Insights",
+    "contact": "Contact",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "home": {
+    "greeting": "Hi! My name is",
+    "name": "Jemimah Martinez"
+  },
+  "about": {
+    "heading": "About Me",
+    "bio": "Final year Computer Systems Engineering student at the University of Auckland",
+    "location": "Auckland, New Zealand"
+  },
+  "contact": {
+    "heading": "Contact me here!",
+    "githubUrl": "https://github.com/jemimahmartinez",
+    "linkedinUrl": "https://www.linkedin.com/in/jemimah-martinez-a0924a18b/",
+    "emailHref": "mailto:martinezjemimah@gmail.com"
+  },
+  "insights": {
+    "heading": "Insights",
+    "passwordPrompt": "🔒 Enter the password to view this section.",
+    "unlockButton": "Unlock",
+    "incorrectPassword": "Incorrect password.",
+    "failedToLoadTemplate": "Failed to load: {err}",
+    "tiles": {
+      "latestReport": "Latest quarterly report",
+      "allReports": "All quarterly reports",
+      "ladderGap": "Career Ladder Gap",
+      "velocity": "Velocity"
+    },
+    "empty": {
+      "latestReport": "No reports published yet.",
+      "historicalReports": "No reports yet.",
+      "ladderGap": "No gap analysis published yet.",
+      "velocity": "No velocity data published yet.",
+      "loading": "Loading…"
+    },
+    "metrics": {
+      "prsMerged": "PRs merged",
+      "commits": "Commits",
+      "reviews": "Reviews",
+      "ticketsClosed": "Tickets closed",
+      "storyPoints": "Story points",
+      "pagesAuthored": "Pages authored"
+    }
+  },
+  "slides": {
+    "tron": {
+      "title": "TRON",
+      "subTitle": "Technical Lead",
+      "text": "Combining dance, synchronised music and lighting, TRON is a dance act performed in the University of Auckland's Engineering Revue stage show production. The technology is comprised of electrical and software components which were maintained and updated yearly in accordance to the show's theme.",
+      "url": "https://engrevue.co.nz/"
+    },
+    "yumble": {
+      "title": "Yumble",
+      "subTitle": "Front-end Web Developer",
+      "text": "Yumble is an application designed to help you find good with your friends. An innovative combination of dating apps such as Tinder and Bumble, with fast paced competitive apps such as Kahoot, Yumble helps you and your friends find food, fast. Project developed for SOFTENG 701 to work in teams of ~20 students aiming to develop skills in advanced software engineering development methods.",
+      "url": "https://yumble.xyz"
+    },
+    "kafeKrayon": {
+      "title": "Kafe Krayon",
+      "subTitle": "Front-end Web Developer",
+      "text": "Kafe Krayon is a web application that allows users to provide a location (e.g. Panmure, Ponsonby) that shows them the cafes around the area, as well as provide Google Map Markers that show them where the cafes are. This project was designed and developed over the 2020 Create Camp hackathon weekend hosted by Summer of Tech and ANZ. This application uses the ZenbuAPI for location data, as well as a GoogleMaps API to show users the location of the cafes.",
+      "url": "https://krayon-kafe.herokuapp.com/"
+    },
+    "recordLine": {
+      "title": "Record Line",
+      "subTitle": "Native Developer",
+      "text": "Record Line is an Android application centred as an E-commerce marketplace that revolves around the sales of vinyl albums for potential users who love to listen to the classics the old-fashioned way. Project developed for COMPSYS 302 to develop a deeper understanding of system modelling in order to produce a user-friendly and aesthetic application. More work is to be done to allow the application to work with an appropriate dataset.",
+      "url": "https://github.com/jemimahmartinez/Android-App_Record-Line"
+    },
+    "freqRelay": {
+      "title": "Frequency Relay",
+      "subTitle": "Embedded Systems Design Engineer",
+      "text": "A low-cost frequency relay application which controls load tripping according to the measured frequency of the power network. The functionality of this frequency relay network was split based on the logical concurrent operations of the network. Project developed for COMPSYS 723 aimed to implement the software application of a frequency relay, targeted for use in normal households. The software controls load tripping according to the measured frequency of the power network.",
+      "url": "https://github.com/jemimahmartinez/frequency_relay"
+    }
+  }
+}

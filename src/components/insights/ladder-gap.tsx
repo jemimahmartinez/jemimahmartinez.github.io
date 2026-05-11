@@ -3,6 +3,7 @@ import withStyles, { WithStylesProps } from "react-jss";
 
 import TileShell from "./tile-shell";
 import { LadderGap as LadderGapData, LadderGapStatus } from "./types";
+import { useOracle } from "../../useOracle";
 
 const STATUS_COLOR: Record<LadderGapStatus, string> = {
   met: "#4caf50",
@@ -64,6 +65,7 @@ interface IProps extends WithStylesProps<typeof styles> {
 const LadderGap: React.FunctionComponent<IProps> = ({ classes }) => {
   const [data, setData] = useState<LadderGapData | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const oracle = useOracle();
 
   useEffect(() => {
     fetch(`${process.env.PUBLIC_URL}/data/ladder-gap.json`)
@@ -73,10 +75,12 @@ const LadderGap: React.FunctionComponent<IProps> = ({ classes }) => {
   }, []);
 
   return (
-    <TileShell title="Career Ladder Gap">
-      {error && <p className={classes.empty}>Failed to load: {error}</p>}
+    <TileShell title={oracle.insights.tiles.ladderGap}>
+      {error && (
+        <p className={classes.empty}>{oracle.insights.failedToLoad(error)}</p>
+      )}
       {!error && !data && (
-        <p className={classes.empty}>No gap analysis published yet.</p>
+        <p className={classes.empty}>{oracle.insights.empty.ladderGap}</p>
       )}
       {data && (
         <>

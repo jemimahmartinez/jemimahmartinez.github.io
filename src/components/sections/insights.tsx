@@ -6,6 +6,7 @@ import LatestReport from "../insights/latest-report";
 import HistoricalReports from "../insights/historical-reports";
 import LadderGap from "../insights/ladder-gap";
 import VelocityDashboard from "../insights/velocity-dashboard";
+import { useOracle } from "../../useOracle";
 
 const styles = {
   Insights: {
@@ -44,10 +45,11 @@ interface IProps extends WithStylesProps<typeof styles> {
 
 const Insights: React.FunctionComponent<IProps> = ({ classes }) => {
   const { unlocked, unlock } = useUnlock();
+  const oracle = useOracle();
 
   return (
     <div id="insights" className={classes.Insights}>
-      <h1 className={classes.heading}>Insights</h1>
+      <h1 className={classes.heading}>{oracle.insights.heading}</h1>
       {!unlocked ? (
         <PasswordGate onUnlock={unlock} />
       ) : (

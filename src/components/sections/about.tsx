@@ -5,6 +5,7 @@ import User from "../icons/user";
 import PinPoint from "../icons/pin-point";
 import RowFlexContainer from "../layout/row-flex";
 import ColumnFlexContainer from "../layout/column-flex";
+import { useOracle } from "../../useOracle";
 
 const styles = {
   About: {
@@ -58,22 +59,20 @@ interface IProps extends WithStylesProps<typeof styles> {
 }
 
 const About: React.ComponentType<IProps> = ({ classes }) => {
+  const oracle = useOracle();
   return (
     <div id="about" className={classes.About}>
-      <h1>About Me</h1>
+      <h1>{oracle.about.heading}</h1>
       <RowFlexContainer center={true}>
         <img src={Image} alt="" className={classes.image} />
         <ColumnFlexContainer>
           <RowFlexContainer center={false}>
             <User className={classes.icon} />
-            <p className={classes.text}>
-              Final year Computer Systems Engineering student at the
-              University of Auckland
-            </p>
+            <p className={classes.text}>{oracle.about.bio}</p>
           </RowFlexContainer>
           <RowFlexContainer center={false}>
             <PinPoint className={classes.icon} />
-            <p className={classes.text}>Auckland, New Zealand</p>
+            <p className={classes.text}>{oracle.about.location}</p>
           </RowFlexContainer>
         </ColumnFlexContainer>
       </RowFlexContainer>

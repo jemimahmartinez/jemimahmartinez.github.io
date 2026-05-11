@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 
 import TileShell from "./tile-shell";
 import { ReportIndexEntry } from "./types";
+import { useOracle } from "../../useOracle";
 
 const styles = {
   meta: {
@@ -68,6 +69,7 @@ const LatestReport: React.FunctionComponent<IProps> = ({ classes }) => {
   const [entry, setEntry] = useState<ReportIndexEntry | null>(null);
   const [body, setBody] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const oracle = useOracle();
 
   useEffect(() => {
     let cancelled = false;
@@ -99,10 +101,12 @@ const LatestReport: React.FunctionComponent<IProps> = ({ classes }) => {
   }, []);
 
   return (
-    <TileShell title="Latest quarterly report">
-      {error && <p className={classes.empty}>Failed to load: {error}</p>}
+    <TileShell title={oracle.insights.tiles.latestReport}>
+      {error && (
+        <p className={classes.empty}>{oracle.insights.failedToLoad(error)}</p>
+      )}
       {!error && !entry && (
-        <p className={classes.empty}>No reports published yet.</p>
+        <p className={classes.empty}>{oracle.insights.empty.latestReport}</p>
       )}
       {entry && (
         <>
@@ -114,7 +118,7 @@ const LatestReport: React.FunctionComponent<IProps> = ({ classes }) => {
               <ReactMarkdown>{body}</ReactMarkdown>
             </div>
           ) : (
-            <p className={classes.empty}>Loading…</p>
+            <p className={classes.empty}>{oracle.insights.empty.loading}</p>
           )}
         </>
       )}

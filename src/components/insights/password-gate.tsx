@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import withStyles, { WithStylesProps } from "react-jss";
 
+import { useOracle } from "../../useOracle";
+
 const PASSWORD_HASH =
   "a30c0db8ae6223bab99dfe654b954b5f56676738a690dbd29c685cf5e2bcdc5d";
 
@@ -96,6 +98,7 @@ const PasswordGate: React.FunctionComponent<IProps> = ({
 }) => {
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
+  const oracle = useOracle();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -110,9 +113,7 @@ const PasswordGate: React.FunctionComponent<IProps> = ({
 
   return (
     <div className={classes.gate}>
-      <p className={classes.subheading}>
-        🔒 Enter the password to view this section.
-      </p>
+      <p className={classes.subheading}>{oracle.insights.passwordPrompt}</p>
       <form className={classes.form} onSubmit={handleSubmit}>
         <input
           type="password"
@@ -124,10 +125,10 @@ const PasswordGate: React.FunctionComponent<IProps> = ({
           }}
         />
         <button type="submit" className={classes.button}>
-          Unlock
+          {oracle.insights.unlockButton}
         </button>
       </form>
-      {error && <p className={classes.error}>Incorrect password.</p>}
+      {error && <p className={classes.error}>{oracle.insights.incorrectPassword}</p>}
     </div>
   );
 };
