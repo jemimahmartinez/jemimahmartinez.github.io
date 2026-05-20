@@ -1,17 +1,13 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
-import {
-  BRANCH_OFFSET_BASE,
-  CARD_GAP,
-  LANE_SPACING,
-  TimelineEvent,
-  YEAR_LABEL_HEIGHT,
-  imageMap,
-} from "./constants";
+import { TimelineEvent, imageMap } from "./constants";
+import { LaneMetrics, StickyBound } from "./layout";
 import { isPresent, parseYear } from "./parseYear";
 import { useElementVisibility, useStickyCardPosition } from "./hooks";
 
 type Classes = Record<string, string>;
+
+type HoverInfo = { midX: number; cardOnTop: boolean };
 
 type EventNodeProps = {
   event: TimelineEvent;
@@ -19,7 +15,18 @@ type EventNodeProps = {
   xOf: (year: number) => number;
   classes: Classes;
   scrollRef: React.MutableRefObject<HTMLDivElement | null>;
+  onOpen: (
+    event: TimelineEvent,
+    getOriginRect: () => DOMRect | null
+  ) => void;
+  hover: HoverInfo | null;
+  onHoverChange: (info: HoverInfo | null) => void;
+  metrics: LaneMetrics;
+  stickyBound: StickyBound;
+  isOpen: boolean;
 };
+
+const EXPAND_SHIFT_RANGE = 400;
 
 export const EventNode: React.FC<EventNodeProps> = ({
   event,
@@ -27,32 +34,44 @@ export const EventNode: React.FC<EventNodeProps> = ({
   xOf,
   classes,
   scrollRef,
+  onOpen,
+  hover,
+  onHoverChange,
+  metrics,
+  stickyBound,
+  isOpen,
 }) => {
   const cardRef = useRef<HTMLDivElement | null>(null);
   const yearRef = useRef<HTMLSpanElement | null>(null);
+  const [isPortrait, setIsPortrait] = useState(false);
 
   const startX = xOf(parseYear(event.year));
   const endX = event.endYear ? xOf(parseYear(event.endYear)) : startX;
   const midX = (startX + endX) / 2;
 
   const isVisible = useElementVisibility(cardRef, scrollRef);
-  useStickyCardPosition(cardRef, yearRef, scrollRef, { startX, endX, midX });
+  useStickyCardPosition(cardRef, yearRef, scrollRef, {
+    startX: stickyBound.startX,
+    endX: stickyBound.endX,
+    midX,
+  });
 
   const isRange = !!event.endYear;
   const isOngoing = isPresent(event.endYear);
   const isBranch = !!event.branch;
   const cardOnTop = isBranch ? event.branch === "above" : index % 2 === 0;
+  const isBelowInteractive = event.branch === "below" && !!event.details;
   const yearText = isRange
     ? `${event.year} – ${isOngoing ? "Present" : event.endYear}`
     : event.year;
 
   const level = event.level ?? 1;
   const branchOffset = isBranch
-    ? BRANCH_OFFSET_BASE + (level - 1) * LANE_SPACING
+    ? metrics.branchOffsetBase + (level - 1) * metrics.laneSpacing
     : 0;
   const cardOffset = isBranch
-    ? branchOffset + YEAR_LABEL_HEIGHT + CARD_GAP
-    : CARD_GAP;
+    ? branchOffset + metrics.yearLabelHeight + metrics.cardGap
+    : metrics.cardGap;
   const yearOffset = isBranch ? branchOffset + 8 : 14;
 
   const verticalAnchor = (offset: number): React.CSSProperties =>
@@ -60,9 +79,24 @@ export const EventNode: React.FC<EventNodeProps> = ({
       ? { bottom: `calc(50% + ${offset}px)` }
       : { top: `calc(50% + ${offset}px)` };
 
+  const isHovered =
+    hover != null && hover.midX === midX && hover.cardOnTop === cardOnTop;
+
+  const shiftPx = (() => {
+    if (!hover || isHovered) return 0;
+    if (!hover.cardOnTop) return 0;
+    if (cardOnTop !== hover.cardOnTop) return 0;
+    const delta = midX - hover.midX;
+    const distance = Math.abs(delta);
+    if (distance >= EXPAND_SHIFT_RANGE) return 0;
+    const amount = EXPAND_SHIFT_RANGE - distance;
+    return delta >= 0 ? amount : -amount;
+  })();
+
   const cardStyle: React.CSSProperties = {
     left: `${midX}px`,
-    transform: "translateX(-50%)",
+    transform: `translateX(calc(-50% + ${shiftPx}px))`,
+    transition: "transform 250ms ease",
     ...verticalAnchor(cardOffset),
   };
   const yearStyle: React.CSSProperties = {
@@ -75,14 +109,40 @@ export const EventNode: React.FC<EventNodeProps> = ({
     ? `calc(50% - ${branchOffset}px)`
     : `calc(50% + ${branchOffset}px)`;
 
+  const wrapperStyle: React.CSSProperties | undefined = isHovered
+    ? { zIndex: 10 }
+    : undefined;
+
   return (
     <div
       className={`${classes.eventWrapper} ${
         isVisible ? classes.eventWrapperVisible : ""
       }`}
+      style={wrapperStyle}
     >
-      <div ref={cardRef} className={classes.card} style={cardStyle}>
-        <Card event={event} classes={classes} />
+      <div
+        ref={cardRef}
+        className={[
+          classes.card,
+          isBelowInteractive && classes.cardBelowInteractive,
+          !isBelowInteractive && isPortrait && classes.cardPortrait,
+        ]
+          .filter(Boolean)
+          .join(" ")}
+        style={cardStyle}
+      >
+        <Card
+          event={event}
+          classes={classes}
+          onOpen={onOpen}
+          onHoverChange={(hovered) =>
+            onHoverChange(hovered ? { midX, cardOnTop } : null)
+          }
+          isPortrait={isPortrait}
+          onPortraitChange={setIsPortrait}
+          isBelowInteractive={isBelowInteractive}
+          isOpen={isOpen}
+        />
       </div>
       <span ref={yearRef} className={classes.year} style={yearStyle}>
         {yearText}
@@ -193,16 +253,93 @@ const BranchRail: React.FC<BranchRailProps> = ({
   );
 };
 
-const Card: React.FC<{ event: TimelineEvent; classes: Classes }> = ({
+const Card: React.FC<{
+  event: TimelineEvent;
+  classes: Classes;
+  onOpen: (
+    event: TimelineEvent,
+    getOriginRect: () => DOMRect | null
+  ) => void;
+  onHoverChange: (hovered: boolean) => void;
+  isPortrait: boolean;
+  onPortraitChange: (portrait: boolean) => void;
+  isBelowInteractive: boolean;
+  isOpen: boolean;
+}> = ({
   event,
   classes,
+  onOpen,
+  onHoverChange,
+  isPortrait,
+  onPortraitChange,
+  isBelowInteractive,
+  isOpen,
 }) => {
+  const imgRef = useRef<HTMLImageElement | null>(null);
   const src = event.image ? imageMap[event.image] : undefined;
-  return (
+  const isInteractive = !!event.details;
+
+  const handleLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget;
+    onPortraitChange(img.naturalHeight > img.naturalWidth);
+  };
+
+  const imageClass = [
+    classes.cardImage,
+    isInteractive &&
+      (!isPortrait || isBelowInteractive) &&
+      classes.cardImageInteractive,
+    isPortrait && !isBelowInteractive && classes.cardImagePortrait,
+    isOpen && classes.cardImageHidden,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const content = (
     <>
-      {src && <img src={src} alt="" className={classes.cardImage} />}
-      <h3 className={classes.cardTitle}>{event.title}</h3>
-      <p className={classes.cardDescription}>{event.description}</p>
+      {src && (
+        <img
+          ref={imgRef}
+          src={src}
+          alt=""
+          className={imageClass}
+          onLoad={handleLoad}
+        />
+      )}
+      <div className={classes.cardTextWrapper}>
+        <h3 className={classes.cardTitle}>{event.title}</h3>
+        <p className={classes.cardDescription}>{event.description}</p>
+      </div>
     </>
+  );
+
+  if (!isInteractive) return content;
+
+  const buttonClass = [
+    classes.cardInteractive,
+    isBelowInteractive && classes.cardInteractiveBelow,
+    !isBelowInteractive && isPortrait && classes.cardInteractivePortrait,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  return (
+    <button
+      type="button"
+      className={buttonClass}
+      onClick={() =>
+        onOpen(
+          event,
+          () => imgRef.current?.getBoundingClientRect() ?? null
+        )
+      }
+      onMouseEnter={() => onHoverChange(true)}
+      onMouseLeave={() => onHoverChange(false)}
+      onFocus={() => onHoverChange(true)}
+      onBlur={() => onHoverChange(false)}
+      aria-label={`Open details for ${event.title}`}
+    >
+      {content}
+    </button>
   );
 };

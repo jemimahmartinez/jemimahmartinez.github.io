@@ -4,6 +4,7 @@ import { MOBILE_BREAKPOINT } from "./constants";
 
 type ScrollState = {
   containerWidth: number;
+  containerHeight: number;
   atStart: boolean;
   atEnd: boolean;
   atPresent: boolean;
@@ -14,6 +15,7 @@ export function useScrollState(
   presentXRef: React.MutableRefObject<number>
 ): ScrollState {
   const [containerWidth, setContainerWidth] = useState(0);
+  const [containerHeight, setContainerHeight] = useState(0);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
   const [atPresent, setAtPresent] = useState(true);
@@ -23,6 +25,7 @@ export function useScrollState(
     if (!el) return;
     const update = () => {
       setContainerWidth(el.clientWidth);
+      setContainerHeight(el.clientHeight);
       const center = el.scrollLeft + el.clientWidth / 2;
       setAtStart(el.scrollLeft <= 1);
       setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 1);
@@ -38,7 +41,7 @@ export function useScrollState(
     };
   }, [scrollRef, presentXRef]);
 
-  return { containerWidth, atStart, atEnd, atPresent };
+  return { containerWidth, containerHeight, atStart, atEnd, atPresent };
 }
 
 type InitialScrollArgs = {

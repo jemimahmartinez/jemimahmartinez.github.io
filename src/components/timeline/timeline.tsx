@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import withStyles, { WithStylesProps } from "react-jss";
 
 import Button from "../button";
@@ -6,6 +6,7 @@ import LeftArrow from "../icons/left-arrow";
 import RightArrow from "../icons/right-arrow";
 
 import { TimelineEvent } from "./constants";
+import { EventModal } from "./EventModal";
 import { EventNode } from "./EventNode";
 import { useInitialScroll, useScrollState } from "./hooks";
 import { computeLayout } from "./layout";
@@ -18,18 +19,29 @@ interface IProps extends WithStylesProps<typeof styles> {
 
 const SNAP_EPSILON = 4;
 
+type HoverInfo = { midX: number; cardOnTop: boolean };
+
 const Timeline: React.FunctionComponent<IProps> = ({ classes, events }) => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const presentXRef = useRef(0);
+  const originRectRef = useRef<() => DOMRect | null>(() => null);
+  const [openEvent, setOpenEvent] = useState<TimelineEvent | null>(null);
+  const [hover, setHover] = useState<HoverInfo | null>(null);
 
-  const { containerWidth, atStart, atEnd, atPresent } = useScrollState(
-    scrollRef,
-    presentXRef
-  );
+  const handleOpen = (
+    event: TimelineEvent,
+    getOriginRect: () => DOMRect | null
+  ) => {
+    originRectRef.current = getOriginRect;
+    setOpenEvent(event);
+  };
+
+  const { containerWidth, containerHeight, atStart, atEnd, atPresent } =
+    useScrollState(scrollRef, presentXRef);
 
   const layout = useMemo(
-    () => computeLayout(events, containerWidth),
-    [events, containerWidth]
+    () => computeLayout(events, containerWidth, containerHeight),
+    [events, containerWidth, containerHeight]
   );
 
   useEffect(() => {
@@ -102,6 +114,12 @@ const Timeline: React.FunctionComponent<IProps> = ({ classes, events }) => {
               xOf={layout.xOf}
               classes={classes}
               scrollRef={scrollRef}
+              onOpen={handleOpen}
+              hover={hover}
+              onHoverChange={setHover}
+              metrics={layout.metrics}
+              stickyBound={layout.stickyBounds[i]}
+              isOpen={openEvent === event}
             />
           ))}
         </div>
@@ -115,6 +133,12 @@ const Timeline: React.FunctionComponent<IProps> = ({ classes, events }) => {
           <RightArrow />
         </Button>
       </div>
+      <EventModal
+        event={openEvent}
+        onClose={() => setOpenEvent(null)}
+        classes={classes}
+        originRectRef={originRectRef}
+      />
     </div>
   );
 };

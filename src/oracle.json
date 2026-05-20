@@ -48,15 +48,37 @@
         "level": 1,
         "title": "Own My Data Intern",
         "description": "First software development internship.",
-        "image": "ownMyData.webp"
+        "image": "ownMyData.webp",
+        "details": {
+          "body": "",
+          "linksTitle": "Blog posts written during internship:",
+          "links": [
+            {
+              "href": "https://medium.com/@ownmydata99/a-mechatronics-and-a-computer-systems-student-walk-into-a-software-development-internship-2729d61db02f",
+              "label": "A Mechatronics and a Computer Systems Student Walk into a Software Development Internship..."
+            },
+            {
+              "href": "https://medium.com/@ownmydata99/overreacting-455d06493f8b",
+              "label": "OverReacting"
+            },
+            {
+              "href": "https://medium.com/@ownmydata99/drawing-the-line-on-graphics-3c89026e1228",
+              "label": "Drawing the Line on Graphics"
+            },
+            {
+              "href": "https://medium.com/@ownmydata99/the-subtle-art-of-programming-like-a-pro-grammer-ba2d73cdbd19",
+              "label": "The Subtle Art of Programming Like a Pro-grammer"
+            }
+          ]
+        }
       },
       {
         "year": "Nov 2020",
         "endYear": "Feb 2021",
         "branch": "above",
         "level": 1,
-        "title": "Node.js Software Development Engineer Intern at Pushpay",
-        "description": "Second software development internship.",
+        "title": "Pushpay Intern",
+        "description": "Node.js Software Development Engineer Internship via Summer of Tech",
         "image": "pushpayInternship.jpg"
       },
       {
@@ -66,7 +88,33 @@
         "level": 1,
         "title": "Engineering Revue",
         "description": "Dancer to Choreographer to Dance Director and TRON tech lead.",
-        "image": "tronBTS.jpg"
+        "image": "tronBTS.jpg",
+        "details": {
+          "body": "I had auditioned for the University of Auckland's Engineering Revue in my first year and was lucky enough to join the cast as a dancer. I progressed to choreographer in my third year, choreographing a big jazz group and became the technical lead for TRON through the midst of covid. In my final year, I became Dance Director and continued leading the tech behind TRON whilst mentoring our up and coming tech lead. I choreographed the boy's dance and girl's and they's dance alongside my fellow choreographers. TRON was a signature dance act combining synchronised music and lighting with custom electrical and software components. Each year the technology was rebuilt and refined to match the show's theme.",
+          "linksTitle": "See me in action:",
+          "links": [
+            {
+              "href": "https://engrevue.co.nz/",
+              "label": "Engineering Revue"
+            },
+            {
+              "href": "https://www.youtube.com/watch?v=-ghDhPliQQs",
+              "label": "2020 Choreographers (Dance)"
+            },
+            {
+              "href": "https://www.youtube.com/watch?v=wqyCCTLCqa0",
+              "label": "You Know They're Out There 2020 (TRON)"
+            },
+            {
+              "href": "https://www.youtube.com/watch?v=8M84-LxYAJ4",
+              "label": "The Elusive Female Engineer 2020 (Skit + Dance)"
+            },
+            {
+              "href": "https://www.youtube.com/watch?v=xG1Lhne3f9M",
+              "label": "Goodnight Gotham 2020 (Hip Hop X)"
+            }
+          ]
+        }
       },
       {
         "year": "May 2022",
@@ -138,7 +186,7 @@
         "level": 1,
         "title": "Generosity Award Winner",
         "description": "Core Value Award winner for Generosity at Pushpay's FY25 Company Kickoff.",
-        "image": "generosityCoreValue.png"
+        "image": "generosityCoreValue.jpg"
       }
     ]
   },

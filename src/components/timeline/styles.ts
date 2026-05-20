@@ -2,8 +2,9 @@ export const styles = {
   wrapper: {
     position: "relative",
     width: "100%",
-    height: "100%",
-    "min-height": "0",
+    "min-height": "100vh",
+    height: "100vh",
+    "max-height": "100vh",
     flex: "1 1 auto",
   },
   scrollContainer: {
@@ -58,23 +59,64 @@ export const styles = {
   },
   card: {
     position: "absolute",
-    width: "260px",
+    width: "210px",
     "text-align": "center",
     display: "flex",
     "flex-direction": "column",
     gap: "6px",
     "align-items": "center",
     "@media (max-width: 600px)": {
-      width: "220px",
+      width: "200px",
     },
   },
   cardImage: {
-    width: "120px",
-    height: "120px",
-    "object-fit": "cover",
-    "object-position": "center",
-    "border-radius": "4px",
+    width: "190px",
+    height: "auto",
+    "border-radius": "8px",
     "flex-shrink": "0",
+    "@media (max-width: 600px)": {
+      width: "140px",
+    },
+  },
+  cardPortrait: {
+    width: "410px",
+    "flex-direction": "row",
+    "align-items": "center",
+    "text-align": "left",
+    gap: "14px",
+    "@media (max-width: 600px)": {
+      width: "340px",
+      gap: "10px",
+    },
+  },
+  cardImagePortrait: {
+    width: "152px",
+    "@media (max-width: 600px)": {
+      width: "140px",
+    },
+  },
+  cardBelowInteractive: {
+    width: "420px",
+    "flex-direction": "row",
+    "align-items": "center",
+    "text-align": "left",
+    gap: "14px",
+    transition: "width 350ms ease",
+    "@media (hover: hover)": {
+      "&:hover": {
+        width: "660px",
+      },
+    },
+    "@media (max-width: 600px)": {
+      width: "350px",
+      gap: "10px",
+    },
+  },
+  cardTextWrapper: {
+    display: "flex",
+    "flex-direction": "column",
+    gap: "4px",
+    "min-width": "0",
   },
   cardTitle: {
     margin: "0",
@@ -165,4 +207,216 @@ export const styles = {
   },
   arrowLeft: { left: "-8px" },
   arrowRight: { right: "-8px" },
+  cardInteractive: {
+    "pointer-events": "auto",
+    cursor: "pointer",
+    background: "none",
+    border: "none",
+    padding: "0",
+    margin: "0",
+    color: "inherit",
+    font: "inherit",
+    width: "100%",
+    display: "flex",
+    "flex-direction": "column",
+    "align-items": "center",
+    gap: "6px",
+    "&:focus-visible": {
+      outline: "2px solid white",
+      "outline-offset": "4px",
+      "border-radius": "4px",
+    },
+    "@media (hover: hover)": {
+      "&:hover $cardImageInteractive": {
+        width: "460px",
+      },
+    },
+  },
+  cardImageInteractive: {
+    transition: "width 300ms ease",
+  },
+  cardImageHidden: {
+    opacity: 0,
+  },
+  cardInteractivePortrait: {
+    "flex-direction": "row",
+    "align-items": "center",
+    "text-align": "left",
+    gap: "10px",
+  },
+  cardInteractiveBelow: {
+    "flex-direction": "row",
+    "align-items": "center",
+    "text-align": "left",
+    gap: "14px",
+  },
+  modalBackdrop: {
+    position: "fixed",
+    top: "0",
+    left: "0",
+    right: "0",
+    bottom: "0",
+    "background-color": "rgba(0, 0, 0, 0.8)",
+    display: "flex",
+    "align-items": "center",
+    "justify-content": "center",
+    "z-index": "1000",
+    padding: "24px",
+    animation: "$modalBackdropFadeIn 300ms ease both",
+  },
+  modalBackdropExiting: {
+    animation: "$modalBackdropFadeOut 800ms ease 300ms both",
+  },
+  "@keyframes modalBackdropFadeIn": {
+    from: { "background-color": "rgba(0, 0, 0, 0)" },
+    to: { "background-color": "rgba(0, 0, 0, 0.8)" },
+  },
+  "@keyframes modalBackdropFadeOut": {
+    from: { "background-color": "rgba(0, 0, 0, 0.8)" },
+    to: { "background-color": "rgba(0, 0, 0, 0)" },
+  },
+  modalContent: {
+    position: "relative",
+    "background-color": "#1a1a1a",
+    border: "1px solid rgba(255, 255, 255, 0.1)",
+    "border-radius": "8px",
+    "max-width": "640px",
+    width: "100%",
+    "max-height": "90vh",
+    "overflow-y": "auto",
+    padding: "32px",
+    color: "white",
+    "box-shadow": "0 20px 60px rgba(0, 0, 0, 0.5)",
+    animation: "$modalChromeFadeIn 300ms ease 800ms both",
+    "& > *:not(img)": {
+      animation: "$modalTextFadeIn 300ms ease 800ms both",
+    },
+    "@media (max-width: 600px)": {
+      padding: "20px",
+    },
+  },
+  modalContentExiting: {
+    animation: "$modalChromeFadeOut 300ms ease both",
+    "& > *:not(img)": {
+      animation: "$modalTextFadeOut 300ms ease both",
+    },
+  },
+  "@keyframes modalChromeFadeIn": {
+    from: {
+      "background-color": "rgba(26, 26, 26, 0)",
+      "border-color": "rgba(255, 255, 255, 0)",
+      "box-shadow": "0 20px 60px rgba(0, 0, 0, 0)",
+    },
+    to: {
+      "background-color": "rgba(26, 26, 26, 1)",
+      "border-color": "rgba(255, 255, 255, 0.1)",
+      "box-shadow": "0 20px 60px rgba(0, 0, 0, 0.5)",
+    },
+  },
+  "@keyframes modalChromeFadeOut": {
+    from: {
+      "background-color": "rgba(26, 26, 26, 1)",
+      "border-color": "rgba(255, 255, 255, 0.1)",
+      "box-shadow": "0 20px 60px rgba(0, 0, 0, 0.5)",
+    },
+    to: {
+      "background-color": "rgba(26, 26, 26, 0)",
+      "border-color": "rgba(255, 255, 255, 0)",
+      "box-shadow": "0 20px 60px rgba(0, 0, 0, 0)",
+    },
+  },
+  "@keyframes modalTextFadeIn": {
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  },
+  "@keyframes modalTextFadeOut": {
+    from: { opacity: 1 },
+    to: { opacity: 0 },
+  },
+  modalClose: {
+    position: "absolute",
+    top: "12px",
+    right: "12px",
+    background: "none",
+    border: "none",
+    color: "white",
+    "font-size": "24px",
+    "line-height": "1",
+    cursor: "pointer",
+    padding: "8px",
+    "border-radius": "4px",
+    "&:hover": {
+      "background-color": "rgba(255, 255, 255, 0.1)",
+    },
+    "&:focus-visible": {
+      outline: "2px solid white",
+      "outline-offset": "2px",
+    },
+  },
+  modalImage: {
+    width: "100%",
+    "max-height": "50vh",
+    "object-fit": "cover",
+    "border-radius": "4px",
+    "margin-bottom": "20px",
+  },
+  modalTitle: {
+    margin: "0 0 8px 0",
+    "font-size": "1.4em",
+    "font-weight": "bold",
+    "padding-right": "32px",
+  },
+  modalBody: {
+    margin: "16px 0 0 0",
+    color: "#ddd",
+    "font-size": "0.95em",
+    "line-height": "1.6",
+    "white-space": "pre-wrap",
+  },
+  modalGallery: {
+    display: "flex",
+    "flex-wrap": "wrap",
+    gap: "8px",
+    "margin-top": "20px",
+  },
+  modalGalleryImage: {
+    width: "calc(50% - 4px)",
+    "max-height": "200px",
+    "object-fit": "cover",
+    "border-radius": "4px",
+    "@media (max-width: 600px)": {
+      width: "100%",
+    },
+  },
+  modalLinksSection: {
+    "margin-top": "20px",
+  },
+  modalLinksTitle: {
+    margin: "0 0 8px 0",
+    color: "white",
+    "font-size": "1em",
+    "font-weight": "bold",
+  },
+  modalLinkWrapper: {
+    display: "flex",
+    "flex-wrap": "wrap",
+    gap: "8px",
+  },
+  modalLink: {
+    display: "inline-block",
+    padding: "8px 16px",
+    "background-color": "#5E1219",
+    color: "white",
+    "text-decoration": "none",
+    "border-radius": "4px",
+    "font-size": "0.9em",
+    transition: "background-color 200ms ease",
+    "&:hover": {
+      "background-color": "#7a1822",
+    },
+    "&:focus-visible": {
+      outline: "2px solid white",
+      "outline-offset": "2px",
+    },
+  },
 };
