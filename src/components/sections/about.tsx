@@ -7,7 +7,7 @@ const styles = {
   About: {
     color: "white",
     display: "flex",
-    "font-size": "calc(10px + 2vmin)",
+    "font-size": "clamp(14px, calc(10px + 2vmin), 26px)",
     "text-align": "center",
     "min-height": "100vh",
     height: "100vh",
