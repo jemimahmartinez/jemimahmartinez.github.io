@@ -2,10 +2,8 @@ export const styles = {
   wrapper: {
     position: "relative",
     width: "100%",
-    "min-height": "100vh",
-    height: "100vh",
     "max-height": "100vh",
-    flex: "1 1 auto",
+    flex: "0 0 auto",
   },
   scrollContainer: {
     width: "100%",
@@ -31,14 +29,14 @@ export const styles = {
   },
   baseline: {
     position: "absolute",
-    top: "50%",
+    top: "var(--rail-pos)",
     right: "0",
     height: "2px",
     "background-color": "rgba(255, 255, 255, 0.25)",
   },
   yearTick: {
     position: "absolute",
-    top: "calc(50% - 5px)",
+    top: "calc(var(--rail-pos) - 5px)",
     width: "1px",
     height: "10px",
     "background-color": "rgba(255, 255, 255, 0.4)",
@@ -110,6 +108,17 @@ export const styles = {
     "@media (max-width: 600px)": {
       width: "350px",
       gap: "10px",
+    },
+  },
+  cardSlideshow: {
+    width: "440px",
+    "flex-direction": "row",
+    "align-items": "center",
+    "text-align": "left",
+    gap: "20px",
+    "@media (max-width: 600px)": {
+      width: "340px",
+      gap: "14px",
     },
   },
   cardTextWrapper: {
@@ -192,7 +201,7 @@ export const styles = {
   },
   arrow: {
     position: "absolute",
-    top: "50%",
+    top: "var(--rail-pos)",
     transform: "translateY(-50%)",
     "z-index": "2",
     opacity: "1",
@@ -228,7 +237,16 @@ export const styles = {
     },
     "@media (hover: hover)": {
       "&:hover $cardImageInteractive": {
-        width: "460px",
+        width: "406px",
+      },
+      "&:hover $slideshowStackCardLeft": {
+        transform: "rotate(-14deg) translate(-34px, 10px) scale(1.05)",
+      },
+      "&:hover $slideshowStackCardRight": {
+        transform: "rotate(14deg) translate(34px, 10px) scale(1.05)",
+      },
+      "&:hover $slideshowStackCardCenter": {
+        transform: "translateY(-6px) scale(1.08)",
       },
     },
   },
@@ -249,6 +267,12 @@ export const styles = {
     "align-items": "center",
     "text-align": "left",
     gap: "14px",
+  },
+  cardInteractiveSlideshow: {
+    "flex-direction": "row",
+    "align-items": "center",
+    "text-align": "left",
+    gap: "20px",
   },
   modalBackdrop: {
     position: "fixed",
@@ -280,7 +304,7 @@ export const styles = {
     "background-color": "#1a1a1a",
     border: "1px solid rgba(255, 255, 255, 0.1)",
     "border-radius": "8px",
-    "max-width": "640px",
+    "max-width": "800px",
     width: "100%",
     "max-height": "90vh",
     "overflow-y": "auto",
@@ -288,7 +312,7 @@ export const styles = {
     color: "white",
     "box-shadow": "0 20px 60px rgba(0, 0, 0, 0.5)",
     animation: "$modalChromeFadeIn 300ms ease 800ms both",
-    "& > *:not(img)": {
+    "& > *:not(img):not($slideshow)": {
       animation: "$modalTextFadeIn 300ms ease 800ms both",
     },
     "@media (max-width: 600px)": {
@@ -297,7 +321,16 @@ export const styles = {
   },
   modalContentExiting: {
     animation: "$modalChromeFadeOut 300ms ease both",
-    "& > *:not(img)": {
+    "& > *:not(img):not($slideshow)": {
+      animation: "$modalTextFadeOut 300ms ease both",
+    },
+    "& $slideshow > *:not($slideshowFrame)": {
+      animation: "$modalTextFadeOut 300ms ease both",
+    },
+    "& $slideshowFrame": {
+      animation: "$slideshowFrameBgOut 300ms ease both",
+    },
+    "& $slideshowNav": {
       animation: "$modalTextFadeOut 300ms ease both",
     },
   },
@@ -418,5 +451,141 @@ export const styles = {
       outline: "2px solid white",
       "outline-offset": "2px",
     },
+  },
+  slideshowStack: {
+    position: "relative",
+    width: "190px",
+    height: "130px",
+    "flex-shrink": "0",
+    transform: "translateX(-8px)",
+    transition: "transform 300ms ease",
+    "@media (max-width: 600px)": {
+      width: "140px",
+      height: "96px",
+    },
+  },
+  slideshowStackCard: {
+    position: "absolute",
+    top: "0",
+    left: "0",
+    width: "100%",
+    height: "100%",
+    "object-fit": "cover",
+    "border-radius": "8px",
+    border: "2px solid #1a1a1a",
+    "box-shadow": "0 4px 12px rgba(0, 0, 0, 0.5)",
+    transition: "transform 300ms ease",
+    "backface-visibility": "hidden",
+  },
+  slideshowStackCardLeft: {
+    transform: "rotate(-7deg) translate(-14px, 6px)",
+    "z-index": "1",
+  },
+  slideshowStackCardCenter: {
+    transform: "rotate(0deg)",
+    "z-index": "3",
+  },
+  slideshowStackCardRight: {
+    transform: "rotate(7deg) translate(14px, 6px)",
+    "z-index": "2",
+  },
+  slideshow: {
+    "margin-top": "20px",
+    display: "flex",
+    "flex-direction": "column",
+    "align-items": "flex-start",
+    gap: "10px",
+    "& > *:not($slideshowFrame)": {
+      animation: "$modalTextFadeIn 300ms ease 800ms both",
+    },
+  },
+  slideshowFrame: {
+    position: "relative",
+    width: "100%",
+    "border-radius": "6px",
+    overflow: "hidden",
+    "background-color": "rgba(0, 0, 0, 0)",
+    animation: "$slideshowFrameBgIn 300ms ease 800ms both",
+  },
+  slideshowImage: {
+    display: "block",
+    width: "100%",
+    "max-height": "50vh",
+    "object-fit": "contain",
+  },
+  slideshowNav: {
+    position: "absolute",
+    top: "50%",
+    transform: "translateY(-50%)",
+    "z-index": "2",
+    width: "40px",
+    height: "40px",
+    display: "flex",
+    "align-items": "center",
+    "justify-content": "center",
+    "background-color": "rgba(0, 0, 0, 0.45)",
+    color: "white",
+    border: "none",
+    "border-radius": "50%",
+    cursor: "pointer",
+    transition: "background-color 200ms ease",
+    animation: "$modalTextFadeIn 300ms ease 800ms both",
+    "&:hover": {
+      "background-color": "rgba(94, 18, 25, 0.85)",
+    },
+  },
+  "@keyframes slideshowFrameBgIn": {
+    from: { "background-color": "rgba(0, 0, 0, 0)" },
+    to: { "background-color": "rgba(0, 0, 0, 1)" },
+  },
+  "@keyframes slideshowFrameBgOut": {
+    from: { "background-color": "rgba(0, 0, 0, 1)" },
+    to: { "background-color": "rgba(0, 0, 0, 0)" },
+  },
+  slideshowNavLeft: { left: "8px" },
+  slideshowNavRight: { right: "8px" },
+  slideshowDots: {
+    display: "flex",
+    "flex-direction": "row",
+    "justify-content": "center",
+    gap: "8px",
+    width: "100%",
+    margin: "4px 0",
+  },
+  slideshowDot: {
+    width: "10px",
+    height: "10px",
+    "border-radius": "50%",
+    border: "none",
+    padding: "0",
+    "background-color": "rgba(255, 255, 255, 0.4)",
+    cursor: "pointer",
+    transition: "background-color 200ms ease, transform 200ms ease",
+    "&:hover": {
+      "background-color": "rgba(255, 255, 255, 0.7)",
+    },
+  },
+  slideshowDotActive: {
+    "background-color": "#5E1219",
+    transform: "scale(1.25)",
+  },
+  slideshowTitle: {
+    margin: "8px 0 0 0",
+    color: "white",
+    "font-size": "1.15em",
+    "font-weight": "bold",
+  },
+  slideshowSubTitle: {
+    margin: "0",
+    color: "#bbb",
+    "font-size": "0.9em",
+    "font-weight": "normal",
+    "font-style": "italic",
+  },
+  slideshowText: {
+    margin: "8px 0 0 0",
+    color: "#ddd",
+    "font-size": "0.9em",
+    "line-height": "1.5",
   },
 };

@@ -2,7 +2,6 @@
   "nav": {
     "home": "Home",
     "about": "Long Story Short",
-    "projects": "Uni Projects",
     "insights": "Insights",
     "contact": "Contact",
     "openMenu": "Open menu",
@@ -39,7 +38,11 @@
         "level": 3,
         "title": "Univeristy of Auckland Student",
         "description": "Tertiary education, studying Computer Systems Engineering.",
-        "image": null
+        "image": null,
+        "details": {
+          "body": "Throughout my Computer Systems Engineering degree at the University of Auckland, I worked on a range of projects spanning embedded systems, native apps, and full-stack web development. Browse the slideshow below to see a few highlights.",
+          "slideshow": ["tron", "yumble", "kafeKrayon", "recordLine", "freqRelay"]
+        }
       },
       {
         "year": "Nov 2019",
@@ -98,20 +101,28 @@
               "label": "Engineering Revue"
             },
             {
+              "href": "https://www.youtube.com/watch?v=qwp4yLUUWBo",
+              "label": "New Rules Parody (Dancer)"
+            },
+            {
               "href": "https://www.youtube.com/watch?v=-ghDhPliQQs",
-              "label": "2020 Choreographers (Dance)"
+              "label": "2020 Choreographers (Chorephographer + Dancer)"
             },
             {
               "href": "https://www.youtube.com/watch?v=wqyCCTLCqa0",
-              "label": "You Know They're Out There 2020 (TRON)"
+              "label": "You Know They're Out There 2020 (TRON Tech)"
             },
             {
               "href": "https://www.youtube.com/watch?v=8M84-LxYAJ4",
-              "label": "The Elusive Female Engineer 2020 (Skit + Dance)"
+              "label": "The Elusive Female Engineer 2020 (Dancer)"
             },
             {
               "href": "https://www.youtube.com/watch?v=xG1Lhne3f9M",
-              "label": "Goodnight Gotham 2020 (Hip Hop X)"
+              "label": "Goodnight Gotham 2020 (Dancer)"
+            },
+            {
+              "href": "https://www.youtube.com/watch?v=f4-92UYWsVs",
+              "label": "Dance With Us 2021 (Dancer)"
             }
           ]
         }

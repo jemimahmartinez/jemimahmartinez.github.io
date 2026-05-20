@@ -36,7 +36,7 @@ const styles = {
 };
 
 type Type = "up" | "down";
-export type Section = "#home" | "#about" | "#projects" | "#insights" | "#contact";
+export type Section = "#home" | "#about" | "#insights" | "#contact";
 
 interface IProps extends WithStylesProps<typeof styles> {
   classes: any;
@@ -44,7 +44,6 @@ interface IProps extends WithStylesProps<typeof styles> {
   section: Section;
   setHomeActive: Function;
   setAboutActive: Function;
-  setProjectsActive: Function;
   setContactActive: Function;
 }
 
@@ -54,7 +53,6 @@ const NavButton: React.FunctionComponent<IProps> = ({
   section,
   setHomeActive,
   setAboutActive,
-  setProjectsActive,
   setContactActive,
 }) => {
   const scrollToSection = (e: React.MouseEvent) => {
@@ -87,7 +85,6 @@ const NavButton: React.FunctionComponent<IProps> = ({
             scrollToSection(e);
             setHomeActive(false);
             setAboutActive(true);
-            setProjectsActive(false);
             setContactActive(false);
           }}
         >

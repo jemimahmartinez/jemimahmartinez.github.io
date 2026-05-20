@@ -8,6 +8,7 @@ import React, {
 import ReactDOM from "react-dom";
 
 import { TimelineEvent, imageMap } from "./constants";
+import { EventSlideshow } from "./EventSlideshow";
 
 type Classes = Record<string, string>;
 
@@ -90,13 +91,16 @@ export const EventModal: React.FC<EventModalProps> = ({
       if (e.key === "Escape") requestClose();
     };
 
-    const previousOverflow = document.body.style.overflow;
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
     document.addEventListener("keydown", onKey);
     closeButtonRef.current?.focus();
 
     return () => {
-      document.body.style.overflow = previousOverflow;
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
       document.removeEventListener("keydown", onKey);
     };
   }, [renderedEvent, requestClose]);
@@ -164,6 +168,8 @@ export const EventModal: React.FC<EventModalProps> = ({
     .filter(Boolean);
   const links = displayed.details?.links ?? [];
   const linksTitle = displayed.details?.linksTitle;
+  const slideshowKeys = displayed.details?.slideshow ?? [];
+  const slideshowDrivesFlip = !mainSrc && slideshowKeys.length > 0;
 
   const backdropClass = [
     classes.modalBackdrop,
@@ -212,6 +218,13 @@ export const EventModal: React.FC<EventModalProps> = ({
           />
         )}
         {body && <p className={classes.modalBody}>{body}</p>}
+        {slideshowKeys.length > 0 && (
+          <EventSlideshow
+            keys={slideshowKeys}
+            classes={classes}
+            imageRef={slideshowDrivesFlip ? imageRef : undefined}
+          />
+        )}
         {gallery.length > 0 && (
           <div className={classes.modalGallery}>
             {gallery.map((src, i) => (

@@ -43,6 +43,8 @@ export type Layout = {
   snapTargets: number[];
   yearTicks: number[];
   belowReach: number;
+  aboveReach: number;
+  railTop: number;
   isMobile: boolean;
   metrics: LaneMetrics;
   stickyBounds: StickyBound[];
@@ -97,6 +99,9 @@ const PORTRAIT_IMAGES = new Set(["grad.jpg", "pushpayInternship.jpg"]);
 const widthForEvent = (event: TimelineEvent, isMobile: boolean): number => {
   if (event.branch === "below" && !!event.details) {
     return isMobile ? 350 : 420;
+  }
+  if (event.details?.slideshow && event.details.slideshow.length > 0) {
+    return isMobile ? 340 : 440;
   }
   if (event.image && PORTRAIT_IMAGES.has(event.image)) {
     return isMobile ? 340 : 410;
@@ -313,7 +318,13 @@ export function computeLayout(
 
   const maxLevel = sorted.reduce((m, e) => Math.max(m, levelOf(e)), 0);
   const belowLevel = sorted.reduce(
-    (m, e) => (e.branch === "below" ? Math.max(m, levelOf(e)) : m),
+    (m, e) =>
+      e.branch === "below" || !e.branch ? Math.max(m, levelOf(e)) : m,
+    0
+  );
+  const aboveLevel = sorted.reduce(
+    (m, e) =>
+      e.branch === "above" || !e.branch ? Math.max(m, levelOf(e)) : m,
     0
   );
 
@@ -331,9 +342,16 @@ export function computeLayout(
     span * PX_PER_YEAR + paddingX * 2 + cumulativeShift
   );
 
-  const reach = reachForLevel(maxLevel, metrics);
+  const aboveReach = reachForLevel(aboveLevel, metrics);
   const belowReach = reachForLevel(belowLevel, metrics);
-  const trackHeight = reach * 2 + metrics.trackPaddingY * 2;
+  const sumReach = aboveReach + belowReach;
+  const remainingForPadding = Math.max(0, containerHeight - sumReach);
+  const adaptedPaddingY = Math.max(
+    metrics.trackPaddingY,
+    Math.min(TRACK_PADDING_Y_MAX, remainingForPadding / 2)
+  );
+  const trackHeight = sumReach + adaptedPaddingY * 2;
+  const railTop = aboveReach + adaptedPaddingY;
 
   const baselineStart = xOf(min);
   const presentX = xOf(parseYear("present"));
@@ -357,6 +375,8 @@ export function computeLayout(
     snapTargets,
     yearTicks,
     belowReach,
+    aboveReach,
+    railTop,
     isMobile,
     metrics,
     stickyBounds,

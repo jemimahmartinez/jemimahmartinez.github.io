@@ -26,7 +26,6 @@ interface IProps extends WithStylesProps<typeof styles> {
   classes: any;
   setHomeActive: Function;
   setAboutActive: Function;
-  setProjectsActive: Function;
   setContactActive: Function;
 }
 
@@ -34,7 +33,6 @@ const Home: React.FunctionComponent<IProps> = ({
   classes,
   setHomeActive,
   setAboutActive,
-  setProjectsActive,
   setContactActive,
 }) => {
   const oracle = useOracle();
@@ -47,7 +45,6 @@ const Home: React.FunctionComponent<IProps> = ({
         section="#about"
         setHomeActive={setHomeActive}
         setAboutActive={setAboutActive}
-        setProjectsActive={setProjectsActive}
         setContactActive={setContactActive}
       />
     </div>

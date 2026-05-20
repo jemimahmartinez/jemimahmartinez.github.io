@@ -4,7 +4,6 @@ import withStyles, { WithStylesProps } from "react-jss";
 
 import Home from "./components/sections/home";
 import About from "./components/sections/about";
-import Projects from "./components/sections/projects";
 import Insights from "./components/sections/insights";
 import Contact from "./components/sections/contact";
 import NavBar from "./components/nav/navbar";
@@ -43,7 +42,7 @@ const styles = {
   },
 };
 
-type Section = "home" | "about" | "projects" | "insights" | "contact";
+type Section = "home" | "about" | "insights" | "contact";
 
 interface IProps extends WithStylesProps<typeof styles> {
   classes: any;
@@ -57,7 +56,6 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
   };
   const setHomeActive = activator("home");
   const setAboutActive = activator("about");
-  const setProjectsActive = activator("projects");
   const setInsightsActive = activator("insights");
   const setContactActive = activator("contact");
 
@@ -79,7 +77,7 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
   }, []);
 
   useEffect(() => {
-    const ids: Section[] = ["home", "about", "projects", "insights", "contact"];
+    const ids: Section[] = ["home", "about", "insights", "contact"];
 
     const updateActive = () => {
       const triggerLine = window.pageYOffset + window.innerHeight * 0.3;
@@ -105,24 +103,20 @@ const App: React.ComponentType<IProps> = ({ classes }) => {
       <Home
         setHomeActive={setHomeActive}
         setAboutActive={setAboutActive}
-        setProjectsActive={setProjectsActive}
         setContactActive={setContactActive}
       />
       <NavBar
         navHomeClass={navClass("home")}
         navAboutClass={navClass("about")}
-        navProjectsClass={navClass("projects")}
         navInsightsClass={navClass("insights")}
         navContactClass={navClass("contact")}
         setHomeActive={setHomeActive}
         setAboutActive={setAboutActive}
-        setProjectsActive={setProjectsActive}
         setInsightsActive={setInsightsActive}
         setContactActive={setContactActive}
       />
       <NavArrow activeSection={activeSection} />
       <About />
-      <Projects />
       <Insights />
       <Contact />
     </div>

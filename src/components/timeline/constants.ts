@@ -3,12 +3,28 @@ import OwnMyData from "../pics/ownMyData.webp";
 import PushpayInternship from "../pics/pushpayInternship.jpg";
 import TronBTS from "../pics/tronBTS.jpg";
 import GenerosityValue from "../pics/generosityCoreValue.jpg";
+import TronGif from "../pics/tron.gif";
+import YumbleGif from "../pics/yumble.gif";
+import KafeKrayonGif from "../pics/kafeKrayon.gif";
+import RecordLineGif from "../pics/recordLine.gif";
+import FreqRelayPng from "../pics/freqRelay.png";
+
+import oracleData from "../../oracle.json";
+
+export type SlideshowSlide = {
+  src: string;
+  title: string;
+  subTitle: string;
+  text: string;
+  url: string;
+};
 
 export type TimelineEventDetails = {
   body?: string;
   linksTitle?: string;
   links?: Array<{ href: string; label?: string }>;
   gallery?: string[];
+  slideshow?: string[];
 };
 
 export type TimelineEvent = {
@@ -30,6 +46,21 @@ export const imageMap: Record<string, string> = {
   "generosityCoreValue.jpg": GenerosityValue,
 };
 
+const slideImageMap: Record<string, string> = {
+  tron: TronGif,
+  yumble: YumbleGif,
+  kafeKrayon: KafeKrayonGif,
+  recordLine: RecordLineGif,
+  freqRelay: FreqRelayPng,
+};
+
+export const slidesMap: Record<string, SlideshowSlide> = Object.fromEntries(
+  Object.entries(oracleData.slides).map(([key, value]) => [
+    key,
+    { src: slideImageMap[key], ...(value as Omit<SlideshowSlide, "src">) },
+  ])
+);
+
 export const PX_PER_YEAR = 260;
 export const PADDING_X = 78;
 export const BRANCH_OFFSET_BASE = 40;
@@ -50,4 +81,4 @@ export const MOBILE_YEAR_LABEL_HEIGHT = 16;
 export const MOBILE_CARD_GAP = 9;
 export const MOBILE_TRACK_PADDING_Y = 16;
 export const LANE_SPACING_MAX_FACTOR = 2;
-export const TRACK_PADDING_Y_MAX = 80;
+export const TRACK_PADDING_Y_MAX = 400;

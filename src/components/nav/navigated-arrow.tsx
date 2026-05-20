@@ -2,7 +2,7 @@ import withStyles, { WithStylesProps } from "react-jss";
 
 import NavTriangle from "./nav-triangle";
 
-type Section = "home" | "about" | "projects" | "insights" | "contact";
+type Section = "home" | "about" | "insights" | "contact";
 
 const styles = {
   overallContainer: {
@@ -12,7 +12,7 @@ const styles = {
     width: "100%",
     "z-index": "99",
     display: "grid",
-    "grid-template-columns": "repeat(5, 1fr)",
+    "grid-template-columns": "repeat(4, 1fr)",
     "pointer-events": "none",
     "@media (max-width: 600px)": {
       display: "none",
@@ -24,7 +24,7 @@ const styles = {
   },
 };
 
-const slots: Section[] = ["home", "about", "projects", "insights", "contact"];
+const slots: Section[] = ["home", "about", "insights", "contact"];
 
 interface IProps extends WithStylesProps<typeof styles> {
   classes: any;

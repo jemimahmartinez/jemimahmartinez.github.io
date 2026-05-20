@@ -73,7 +73,7 @@ const styles = {
     },
   },
   li: {
-    width: "20%",
+    width: "25%",
     "@media (max-width: 600px)": {
       width: "100%",
     },
@@ -84,12 +84,10 @@ interface IProps extends WithStylesProps<typeof styles> {
   classes: any;
   navHomeClass: any;
   navAboutClass: any;
-  navProjectsClass: any;
   navInsightsClass: any;
   navContactClass: any;
   setHomeActive: Function;
   setAboutActive: Function;
-  setProjectsActive: Function;
   setInsightsActive: Function;
   setContactActive: Function;
 }
@@ -98,12 +96,10 @@ const NavBar: React.FunctionComponent<IProps> = ({
   classes,
   navHomeClass,
   navAboutClass,
-  navProjectsClass,
   navInsightsClass,
   navContactClass,
   setHomeActive,
   setAboutActive,
-  setProjectsActive,
   setInsightsActive,
   setContactActive,
 }) => {
@@ -125,7 +121,6 @@ const NavBar: React.FunctionComponent<IProps> = ({
   const items = [
     { id: "home", label: oracle.nav.home, className: navHomeClass, setActive: setHomeActive },
     { id: "about", label: oracle.nav.about, className: navAboutClass, setActive: setAboutActive },
-    { id: "projects", label: oracle.nav.projects, className: navProjectsClass, setActive: setProjectsActive },
     { id: "insights", label: oracle.nav.insights, className: navInsightsClass, setActive: setInsightsActive },
     { id: "contact", label: oracle.nav.contact, className: navContactClass, setActive: setContactActive },
   ];

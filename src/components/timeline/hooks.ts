@@ -25,7 +25,7 @@ export function useScrollState(
     if (!el) return;
     const update = () => {
       setContainerWidth(el.clientWidth);
-      setContainerHeight(el.clientHeight);
+      setContainerHeight(window.innerHeight);
       const center = el.scrollLeft + el.clientWidth / 2;
       setAtStart(el.scrollLeft <= 1);
       setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 1);
@@ -35,9 +35,11 @@ export function useScrollState(
     const ro = new ResizeObserver(update);
     ro.observe(el);
     el.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
     return () => {
       ro.disconnect();
       el.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
     };
   }, [scrollRef, presentXRef]);
 
@@ -49,11 +51,18 @@ type InitialScrollArgs = {
   presentX: number;
   trackHeight: number;
   belowReach: number;
+  railTop: number;
 };
 
 export function useInitialScroll(
   scrollRef: React.MutableRefObject<HTMLDivElement | null>,
-  { containerWidth, presentX, trackHeight, belowReach }: InitialScrollArgs
+  {
+    containerWidth,
+    presentX,
+    trackHeight,
+    belowReach,
+    railTop,
+  }: InitialScrollArgs
 ): void {
   const hasInitialScrolledRef = useRef(false);
   useEffect(() => {
@@ -61,7 +70,7 @@ export function useInitialScroll(
     const el = scrollRef.current;
     if (!el) return;
     const left = Math.max(0, presentX - containerWidth / 2);
-    const baselineY = trackHeight / 2;
+    const baselineY = railTop;
     const margin = 20;
     const viewport = el.clientHeight;
     const maxScroll = trackHeight - viewport;
@@ -75,7 +84,7 @@ export function useInitialScroll(
     };
     apply();
     requestAnimationFrame(apply);
-  }, [scrollRef, containerWidth, presentX, trackHeight, belowReach]);
+  }, [scrollRef, containerWidth, presentX, trackHeight, belowReach, railTop]);
 }
 
 export function useElementVisibility(

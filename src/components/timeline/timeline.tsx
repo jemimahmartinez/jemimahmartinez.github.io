@@ -19,7 +19,7 @@ interface IProps extends WithStylesProps<typeof styles> {
 
 const SNAP_EPSILON = 4;
 
-type HoverInfo = { midX: number; cardOnTop: boolean };
+type HoverInfo = { midX: number; cardOnTop: boolean; expands: boolean };
 
 const Timeline: React.FunctionComponent<IProps> = ({ classes, events }) => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -53,6 +53,7 @@ const Timeline: React.FunctionComponent<IProps> = ({ classes, events }) => {
     presentX: layout.presentX,
     trackHeight: layout.trackHeight,
     belowReach: layout.belowReach,
+    railTop: layout.railTop,
   });
 
   const snapTo = (direction: 1 | -1) => {
@@ -69,8 +70,13 @@ const Timeline: React.FunctionComponent<IProps> = ({ classes, events }) => {
     el.scrollTo({ left: target - el.clientWidth / 2, behavior: "smooth" });
   };
 
+  const wrapperStyle: React.CSSProperties = {
+    height: `${layout.trackHeight}px`,
+    ["--rail-pos" as any]: `${layout.railTop}px`,
+  };
+
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.wrapper} style={wrapperStyle}>
       <div
         className={`${classes.arrow} ${classes.arrowLeft} ${
           atStart ? classes.arrowHidden : ""
@@ -80,7 +86,11 @@ const Timeline: React.FunctionComponent<IProps> = ({ classes, events }) => {
           <LeftArrow />
         </Button>
       </div>
-      <div ref={scrollRef} className={classes.scrollContainer}>
+      <div
+        ref={scrollRef}
+        className={classes.scrollContainer}
+        style={openEvent ? { overflow: "hidden" } : undefined}
+      >
         <div
           className={classes.track}
           style={{
